@@ -6,6 +6,13 @@ class SupplyItemsController < ApplicationController
 
   menu_item :settings, only: [:new, :create, :edit, :update, :destroy]
 
+  def autocomplete
+    @supply_items = @project.supply_items.like(params[:q]).to_a.map{|i|
+      IssueSupplyItem.new supply_item: i, quantity: ''
+    }
+    render layout: false
+  end
+
   def edit
     @supply_item = find_supply_item
   end
@@ -52,10 +59,6 @@ class SupplyItemsController < ApplicationController
 
   def find_supply_item
     @project.supply_items.find params[:id]
-  end
-
-  def find_project_by_project_id
-    @project = Project.find params[:project_id]
   end
 
 end

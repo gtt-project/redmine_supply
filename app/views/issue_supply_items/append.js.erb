@@ -1,0 +1,5 @@
+<% @issue_supply_items.each do |i| %>
+  $("#<%= dom_id i.supply_item %>_wrap").remove();
+<% end %>
+$('#supply_items_inputs').append('<%= j issue_supply_item_tags(@issue_supply_items) %>');
+

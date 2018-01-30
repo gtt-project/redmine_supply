@@ -1,6 +1,32 @@
 
-/**************************************************************/
-/*                  SupplyItems table
-/**************************************************************/
+/* SupplyItems table */
 
 table.list.supply_items tbody td.text { text-align: left; }
+
+/* add items overlay */
+#supply_item_search { width: 90%; }
+#supply_items_for_issue .unit {
+  margin-left: 5px;
+  display: inline-block;
+  width: 3em;
+}
+
+/* supply items in issue form */
+
+#supply_items_form span.add_supply_items {
+  font-size: 80%;
+  line-height: 2.5em;
+}
+
+#supply_items_inputs label {
+  margin-left: 5px;
+  float: none;
+  font-weight: normal;
+}
+#supply_items_inputs .supply_item_wrap {
+  float: left;
+  margin: 0 5px;
+}
+#supply_items_inputs .unit {
+  margin-left: 5px;
+}

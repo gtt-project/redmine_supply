@@ -13,15 +13,17 @@ Redmine::Plugin.register :redmine_supply do
 
   requires_redmine version_or_higher: '3.4.0'
 
-  #settings default: {
-  #}, partial: 'redmine_supply/settings'
-
   project_module :supply do
 
-    permission :view_supply_items, {}, require: :member, read: true
     permission :manage_supply_items, {
       supply_items: %i( new edit update create destroy ),
       projects: %i( manage_supply_items )
+    }, require: :member
+
+    permission :view_issue_supply_items, {}, require: :member, read: true
+    permission :manage_issue_supply_items, {
+      issue_supply_items: %i( new create destroy append ),
+      supply_items: %i( autocomplete )
     }, require: :member
   end
 
