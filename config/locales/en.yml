@@ -1,0 +1,9 @@
+en:
+  field_supply_item_description: Description
+  field_supply_item_unit: Unit
+  label_supply_item_description: Description
+  label_supply_item_name: Name
+  label_supply_item_new: New Supply Item
+  label_supply_item_plural: Supply items
+  label_supply_item_unit_piece: pcs
+  label_supply_item_unit_kg: kg
