@@ -15,7 +15,7 @@ class SupplyItemTest < ActiveSupport::TestCase
     assert SupplyItem.like('te').any?
     refute SupplyItem.like('desc').any?
 
-    RedmineSupply::SaveSupplyItem.({name: 'test', description: 'the description'}, project: @project)
+    RedmineSupply::SaveSupplyItem.({name: 'another test', description: 'the description'}, project: @project)
     assert SupplyItem.like('desc').any?
   end
 

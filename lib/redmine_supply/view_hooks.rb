@@ -7,6 +7,7 @@ module RedmineSupply
 
     render_on :view_issues_show_details_bottom,
       partial: "hooks/issue_supply_items"
+
     render_on :view_issues_form_details_bottom,
       partial: "hooks/issue_supply_items_form"
 

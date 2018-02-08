@@ -1,0 +1,116 @@
+require_relative '../test_helper'
+
+class IssueSupplyItemsTest < Redmine::IntegrationTest
+  fixtures :projects,
+           :users, :email_addresses,
+           :roles,
+           :members,
+           :member_roles,
+           :trackers,
+           :projects_trackers,
+           :enabled_modules,
+           :issue_statuses,
+           :issues,
+           :enumerations,
+           :custom_fields,
+           :custom_values,
+           :custom_fields_trackers,
+           :attachments
+
+  def setup
+    super
+    User.current = nil
+    @project = Project.find 'ecookbook'
+    EnabledModule.create! project: @project, name: 'supply'
+    Role.find(1).add_permission! :view_issue_supply_items
+  end
+
+  def test_editing_supply_items_require_manage_permission
+    log_user 'jsmith', 'jsmith'
+
+    get '/projects/ecookbook/issues/new'
+    assert_response :success
+    assert_select 'label', text: 'Supply items', count: 0
+    assert_select '.add_supply_items a', text: 'Add', count: 0
+
+    get '/issues/1/edit'
+    assert_response :success
+    assert_select 'label', text: 'Supply items', count: 0
+    assert_select '.add_supply_items a', text: 'Add', count: 0
+  end
+
+  def test_issue_supply_items_editing
+    r = RedmineSupply::SaveSupplyItem.({name: 'Sand', unit: 'kg'}, project: @project)
+    assert sand = r.supply_item
+
+    Role.find(1).add_permission! :manage_issue_supply_items
+    log_user 'jsmith', 'jsmith'
+
+    get '/projects/ecookbook/issues/new'
+    assert_response :success
+    assert_select 'label', text: 'Supply items'
+    assert_select '.add_supply_items a', text: 'Add'
+
+    post '/projects/ecookbook/issues', params: {
+      issue: {
+        subject: 'test',
+        issue_supply_items_attributes: [
+          {"quantity"=>"10", "supply_item_id"=>sand.id.to_s}
+        ]
+      }
+    }
+
+    sand.reload
+    assert_equal 1, sand.issue_supply_items.count
+    assert issue_supply_item = sand.issue_supply_items.first
+    assert_equal 10, issue_supply_item.quantity
+    assert issue = issue_supply_item.issue
+    assert_equal 'test', issue.subject
+
+    follow_redirect!
+    assert_response :success
+    assert_select 'label', text: 'Supply items'
+    assert_select 'div.value', text: 'Sand (10 kg)'
+
+    get "/issues/#{issue.id}/edit"
+    assert_response :success
+    assert_select "#supply_item_#{sand.id}_wrap input[value=\"10\"]"
+    assert_select "#supply_item_#{sand.id}_wrap label", text: 'Sand'
+
+
+    put "/issues/#{issue.id}", params: {
+      issue: {
+        issue_supply_items_attributes: [
+          { "quantity" => "15", "id" => issue_supply_item.id }
+        ]
+      }
+    }
+
+    issue_supply_item.reload
+    assert_equal 15, issue_supply_item.quantity
+
+    follow_redirect!
+    assert_response :success
+    assert_select 'label', text: 'Supply items'
+    assert_select 'div.value', text: 'Sand (15 kg)'
+
+
+    put "/issues/#{issue.id}", params: {
+      issue: {
+        issue_supply_items_attributes: [
+          { "quantity" => "0", "id" => issue_supply_item.id }
+        ]
+      }
+    }
+
+    refute IssueSupplyItem.any?
+
+    follow_redirect!
+    assert_response :success
+    assert_select 'label', text: 'Supply items', count: 1
+    assert_select 'div.value', text: /Sand/, count: 0
+
+  end
+end
+
+

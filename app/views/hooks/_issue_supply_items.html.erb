@@ -1,6 +1,6 @@
-<% if issue && User.current.allowed_to?(:view_supply_items, issue.project) && issue.issue_supply_items.any? %>
+<% if issue && User.current.allowed_to?(:view_issue_supply_items, issue.project) && issue.issue_supply_items.any? %>
   <%= issue_fields_rows do |rows|
-    rows.left l(:label_supply_item_plural), safe_join(issue.issue_supply_items.map{|i| supply_item_tag(i)}, ', ')
+    rows.left l(:label_supply_item_plural), safe_join(issue.issue_supply_items.map{|i| issue_supply_item_tag(i)}, ', ')
   end %>
 <% end %>
 

@@ -5,5 +5,6 @@ module RedmineSupply
     RedmineSupply::IssuePatch.apply
     RedmineSupply::ProjectPatch.apply
     ProjectsController.send :helper, RedmineSupply::ProjectSettingsTabs
+    IssuesController.send :helper, :supply_items
   end
 end

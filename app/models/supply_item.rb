@@ -23,4 +23,6 @@ class SupplyItem < ActiveRecord::Base
       all
     end
   }
+
+
 end

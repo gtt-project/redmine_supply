@@ -12,7 +12,7 @@ class SupplyItemsTest < Redmine::IntegrationTest
     EnabledModule.create! project: @project, name: 'supply'
   end
 
-  def test_textblocks_require_permission
+  def test_supply_items_require_permission
     log_user 'jsmith', 'jsmith'
 
     get '/projects/ecookbook/settings'
@@ -22,7 +22,7 @@ class SupplyItemsTest < Redmine::IntegrationTest
     assert_response 403
   end
 
-  def test_textblock_crud
+  def test_supply_item_crud
     Role.find(1).add_permission! :manage_supply_items
 
     log_user 'jsmith', 'jsmith'
