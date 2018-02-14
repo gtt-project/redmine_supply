@@ -1,12 +1,12 @@
 en:
-  field_supply_item_description: Description
-  field_supply_item_unit: Unit
-  label_add_issue_supply_items: Add supply items
-  label_add_supply_items: Add
-  label_supply_item_description: Description
-  label_supply_item_name: Name
-  label_supply_item_new: New Supply Item
-  label_supply_item_plural: Supply items
-  label_supply_item_search: "Search for supply items:"
-  label_supply_item_unit_piece: pcs
+  field_supply_item_description: 説明
+  field_supply_item_unit: 単位
+  label_add_issue_supply_items: 資材を追加
+  label_add_supply_items: 追加
+  label_supply_item_description: 説明
+  label_supply_item_name: 名前
+  label_supply_item_new: 新しい資材
+  label_supply_item_plural: 資材
+  label_supply_item_search: "資材を探す:"
+  label_supply_item_unit_piece: ピース
   label_supply_item_unit_kg: kg
