@@ -1,0 +1,16 @@
+<% if @issue.safe_attribute? 'issue_supply_items_attributes' -%>
+  <div id="supply_items_form">
+    <label style="margin-left: 0;"><%= l(:label_supply_item_plural) %></label>
+    <div id="supply_items_inputs">
+      <%= issue_supply_item_form_tags @issue.issue_supply_items %>
+    </div>
+    <span class="add_supply_items">
+      <%= link_to l(:label_add_supply_items),
+        new_issue_supply_item_path(@project),
+        class: 'icon icon-add-bullet',
+        remote: true,
+        method: 'get' %>
+    </span>
+  </div>
+<% end %>
+

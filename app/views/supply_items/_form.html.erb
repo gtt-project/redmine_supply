@@ -1,0 +1,10 @@
+<%= error_messages_for 'supply_item' %>
+
+<div class="box tabular">
+  <p><%= f.text_field :name, required: true, size: 25 %></p>
+  <p><%= f.select :unit, SupplyItem.units.keys.map{|u|[t(:"label_supply_item_unit_#{u}"), u]}, label: l(:field_supply_item_unit) %></p>
+  <p><%= f.text_area :description, label: l(:field_supply_item_description), rows: 10 %></p>
+</div>
+
+<%= wikitoolbar_for 'supply_item_description' %>
+

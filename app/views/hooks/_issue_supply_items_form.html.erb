@@ -1,0 +1,6 @@
+<% if User.current.allowed_to? :manage_issue_supply_items, @project %>
+  <div id="issue_supply_items_form_container">
+    <%= render partial: 'issue_supply_items/issue_form' %>
+  </div>
+<% end %>
+

@@ -1,0 +1,25 @@
+<h3 class="title"><%= l(:label_add_issue_supply_items) %></h3>
+
+<%= form_tag(issue.present? ? issue_supply_items_path : append_issue_supply_items_path,
+             remote: true,
+             method: :post,
+             id: 'new-issue-supply-items-form') do %>
+
+  <%= hidden_field_tag 'issue_id', issue.id if issue %>
+  <%= hidden_field_tag 'project_id', @project.id if @project %>
+
+  <p><%= label_tag 'supply_item_search', l(:label_supply_item_search) %><%= text_field_tag 'supply_item_search', nil %></p>
+  <%= javascript_tag "observeSearchfield('supply_item_search', 'supply_items_for_issue', '#{ j autocomplete_project_supply_items_url(
+                 issue_id: (issue.id if issue),
+                 project_id: @project) }')" %>
+
+  <div id="supply_items_for_issue">
+    <%= issue_supply_item_form_tags(supply_items) %>
+  </div>
+
+  <p class="buttons">
+    <%= submit_tag l(:button_add), name: nil, onclick: "hideModal(this);" %>
+    <%= submit_tag l(:button_cancel), name: nil, onclick: "hideModal(this);", type: 'button' %>
+  </p>
+<% end %>
+

@@ -1,0 +1,35 @@
+<% if supply_items.any? %>
+  <table class="list supply_items">
+    <thead>
+      <tr>
+        <th><%= l :label_supply_item_name %></th>
+        <th><%= l :label_supply_item_description %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render collection: supply_items, partial: 'supply_items/supply_item' %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="nodata"><%= l :label_no_data %></p>
+<% end %>
+
+<%= content_for :header_tags do %>
+  <%= javascript_include_tag 'jquery.dotdotdot', plugin: 'redmine_supply' %>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+      $("table.list.supply_items tbody td.text div").dotdotdot({
+        watch: 'window',
+      });
+
+      // make sure text is shortened when it was initially hidden and just
+      // becomes visible due to Redmine's tabbing in project settings:
+      var origShowTab = window.showTab;
+      window.showTab = function(name, url){
+        origShowTab(name, url);
+        $("table.list.supply_items tbody td.text div").trigger('update.dot');
+      }
+    });
+  <% end %>
+<% end %>
