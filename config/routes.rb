@@ -8,11 +8,7 @@ scope 'projects/:project_id' do
   end
 
   resources :issue_supply_items, only: %i( new create destroy ),
-                                 as: :issue_supply_items do
-    collection do
-      post :append
-    end
-  end
+                                 as: :issue_supply_items
 
 end
 

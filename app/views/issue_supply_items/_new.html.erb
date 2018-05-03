@@ -1,6 +1,6 @@
 <h3 class="title"><%= l(:label_add_issue_supply_items) %></h3>
 
-<%= form_tag(issue.present? ? issue_supply_items_path : append_issue_supply_items_path,
+<%= form_tag(issue_supply_items_path,
              remote: true,
              method: :post,
              id: 'new-issue-supply-items-form') do %>

@@ -8,7 +8,7 @@ class IssueSupplyItemsController < ApplicationController
   def new
   end
 
-  def append
+  def create
     if params[:issue] and attrs = params[:issue][:issue_supply_items_attributes]
 
       @issue_supply_items = attrs.map{ |hsh|
@@ -22,9 +22,6 @@ class IssueSupplyItemsController < ApplicationController
     if @issue_supply_items.blank?
       head 200
     end
-  end
-
-  def create
   end
 
   def destroy
