@@ -24,11 +24,12 @@ class SupplyItemsTest < Redmine::IntegrationTest
 
   def test_supply_item_crud
     Role.find(1).add_permission! :manage_supply_items
+    Role.find(1).add_permission! :view_supply_items
 
     log_user 'jsmith', 'jsmith'
 
     get '/projects/ecookbook'
-    assert_select 'li a', text: 'Supply items'
+    assert_select '#main-menu li a', text: 'Supply items'
 
     get '/projects/ecookbook/supply_items'
     assert_response :success
