@@ -5,7 +5,7 @@ en:
   label_add_supply_items: Add
   label_supply_item_description: Description
   label_supply_item_name: Name
-  label_supply_item_new: New Supply Item
+  label_supply_item_new: New supply item
   label_supply_item_plural: Supply items
   label_supply_item_search: "Search for supply items:"
   label_supply_item_unit_piece: pcs

@@ -5,7 +5,7 @@ module RedmineSupply
     end
     def self.load(file)
       @units = Hash[
-        YAML.load(IO.read file)["units"].each_with_index.map do |unit, idx|
+        YAML.load(IO.read file)["units"].map.with_index do |unit, idx|
           [unit.to_sym, idx + 1]
         end
       ]

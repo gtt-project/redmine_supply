@@ -1,6 +1,0 @@
-<p>
-  <%= link_to l(:label_supply_item_new), new_project_supply_item_path(@project), class: 'icon icon-add' %>
-</p>
-
-<%= render partial: 'supply_items/list', locals: { supply_items: SupplyItem.where(project_id: @project.id) } %>
-

@@ -15,7 +15,7 @@ class SupplyItemsTest < Redmine::IntegrationTest
   def test_supply_items_require_permission
     log_user 'jsmith', 'jsmith'
 
-    get '/projects/ecookbook/settings'
+    get '/projects/ecookbook'
     assert_response :success
     assert_select 'li a', text: 'Supply items', count: 0
     post '/projects/ecookbook/supply_items', params: { supply_item: { name: 'new' }}
@@ -27,10 +27,10 @@ class SupplyItemsTest < Redmine::IntegrationTest
 
     log_user 'jsmith', 'jsmith'
 
-    get '/projects/ecookbook/settings'
+    get '/projects/ecookbook'
     assert_select 'li a', text: 'Supply items'
 
-    get '/projects/ecookbook/settings/supply_items'
+    get '/projects/ecookbook/supply_items'
     assert_response :success
 
     get '/projects/ecookbook/supply_items/new'
@@ -39,7 +39,7 @@ class SupplyItemsTest < Redmine::IntegrationTest
     assert_difference 'SupplyItem.count' do
       post '/projects/ecookbook/supply_items', params: { supply_item: { name: 'test', description: 'lorem ipsum'}}
     end
-    assert_redirected_to '/projects/ecookbook/settings/supply_items'
+    assert_redirected_to '/projects/ecookbook/supply_items'
 
     follow_redirect!
 
@@ -58,7 +58,7 @@ class SupplyItemsTest < Redmine::IntegrationTest
     assert_difference 'SupplyItem.count', -1 do
       delete "/projects/ecookbook/supply_items/#{i.id}"
     end
-    assert_redirected_to '/projects/ecookbook/settings/supply_items'
+    assert_redirected_to '/projects/ecookbook/supply_items'
   end
 end
 

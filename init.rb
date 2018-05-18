@@ -16,8 +16,11 @@ Redmine::Plugin.register :redmine_supply do
   project_module :supply do
 
     permission :manage_supply_items, {
-      supply_items: %i( new edit update create destroy ),
-      projects: %i( manage_supply_items )
+      supply_items: %i( index new edit update create destroy ),
+    }, require: :member
+
+    permission :view_supply_items, {
+      supply_items: %i( index ),
     }, require: :member
 
     permission :view_issue_supply_items, {}, require: :member, read: true
@@ -27,5 +30,21 @@ Redmine::Plugin.register :redmine_supply do
     }, require: :member
   end
 
+  menu :project_menu,
+    :supply_items,
+    { controller: 'supply_items', action: 'index' },
+    caption: :label_supply_item_plural,
+    after: :issues,
+    param: :project_id,
+    permission: :view_supply_items
+
+  menu :project_menu,
+    :new_supply_item,
+    { controller: 'supply_items', action: 'new' },
+    caption: :label_supply_item_new,
+    after: :new_version,
+    param: :project_id,
+    parent: :new_object,
+    permission: :manage_supply_items
 end
 
