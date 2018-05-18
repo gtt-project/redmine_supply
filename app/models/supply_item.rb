@@ -8,10 +8,7 @@ class SupplyItem < ActiveRecord::Base
                    uniqueness: { case_sensitive: false,
                                  scope: :project_id }
 
-  enum unit: {
-    piece: 1,
-    kg: 2,
-  }
+  enum unit: RedmineSupply::Unit.all
 
 
   scope :like, ->(q){

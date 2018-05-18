@@ -1,0 +1,4 @@
+# order matters, be sure to append new units at the end of the list
+units:
+  - piece
+  - kg
