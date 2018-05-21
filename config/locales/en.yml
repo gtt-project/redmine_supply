@@ -1,6 +1,7 @@
 en:
   field_supply_item_description: Description
   field_supply_item_unit: Unit
+  field_issue_supply_item_names: Supply Items
   label_add_issue_supply_items: Add supply items
   label_add_supply_items: Add
   label_supply_item_description: Description
