@@ -7,9 +7,10 @@ class SupplyItemsController < ApplicationController
   menu_item :supply_items, only: [:index, :new, :create, :edit, :update, :destroy]
 
   def autocomplete
-    @supply_items = @project.supply_items.like(params[:q]).to_a.map{|i|
-      IssueSupplyItem.new supply_item: i, quantity: ''
-    }
+    query = RedmineSupply::SupplyItemsQuery.new(project: @project,
+                                                query: params[:q])
+    @supply_items = query.to_a
+    @total = query.total
     render layout: false
   end
 

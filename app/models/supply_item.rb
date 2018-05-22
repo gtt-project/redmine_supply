@@ -8,6 +8,8 @@ class SupplyItem < ActiveRecord::Base
                    uniqueness: { case_sensitive: false,
                                  scope: :project_id }
 
+  scope :sorted, ->{ order name: :asc}
+
   enum unit: RedmineSupply::Unit.all
 
 

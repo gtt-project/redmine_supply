@@ -1,2 +1,2 @@
-<%= issue_supply_item_form_tags(@supply_items) %>
+<%= render partial: 'supply_items/supply_items_for_issue', locals: { supply_items: @supply_items, total: @total } %>
 

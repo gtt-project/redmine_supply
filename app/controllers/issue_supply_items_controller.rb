@@ -6,6 +6,9 @@ class IssueSupplyItemsController < ApplicationController
   helper :supply_items
 
   def new
+    query = RedmineSupply::SupplyItemsQuery.new(project: @project)
+    @supply_items = query.to_a
+    @total = query.total
   end
 
   def create

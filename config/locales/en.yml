@@ -11,3 +11,4 @@ en:
   label_supply_item_search: "Search for supply items:"
   label_supply_item_unit_piece: pcs
   label_supply_item_unit_kg: kg
+  label_supply_item_more_items: Showing %{shown} of %{total} results.

@@ -1,0 +1,6 @@
+<%= issue_supply_item_form_tags(supply_items) %>
+<% if total > supply_items.size %>
+  <%= l :label_supply_item_more_items, shown: supply_items.size, total: total %>
+<% end %>
+
+
