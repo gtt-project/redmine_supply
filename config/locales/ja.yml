@@ -1,6 +1,7 @@
 ja:
   field_supply_item_description: 説明
   field_supply_item_unit: 単位
+  field_issue_supply_item_names: 資材
   label_add_issue_supply_items: 資材を追加
   label_add_supply_items: 追加
   label_supply_item_description: 説明
@@ -10,3 +11,4 @@ ja:
   label_supply_item_search: "資材を探す:"
   label_supply_item_unit_piece: ピース
   label_supply_item_unit_kg: kg
+  label_supply_item_more_items: Showing %{shown} of %{total} results.

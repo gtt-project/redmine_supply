@@ -12,4 +12,3 @@ Adding new units
 2. Add translations for your new unit under the key
    `label_supply_item_unit_your-unit`.
 3. Restart the application for the changes to take effect.
-
