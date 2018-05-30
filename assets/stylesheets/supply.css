@@ -13,6 +13,10 @@ table.list.supply_items tbody td.text { text-align: left; }
 
 /* supply items in issue form */
 
+#issue_supply_items_form_container {
+  margin: 5px 0;
+}
+
 #supply_items_form span.add_supply_items {
   font-size: 80%;
   line-height: 2.5em;

@@ -1,0 +1,10 @@
+<% if User.current.allowed_to? :manage_supply_items, @project %>
+  <div class="contextual">
+    <%= link_to l(:label_supply_item_new), new_project_supply_item_path(@project), class: 'icon icon-add' %>
+  </div>
+<% end %>
+<%= title l(:label_supply_item_plural) %>
+
+<%= render partial: 'supply_items/list', locals: { supply_items: @supply_items } %>
+
+

@@ -1,6 +1,6 @@
 <h3 class="title"><%= l(:label_add_issue_supply_items) %></h3>
 
-<%= form_tag(issue.present? ? issue_supply_items_path : append_issue_supply_items_path,
+<%= form_tag(issue_supply_items_path,
              remote: true,
              method: :post,
              id: 'new-issue-supply-items-form') do %>
@@ -14,7 +14,7 @@
                  project_id: @project) }')" %>
 
   <div id="supply_items_for_issue">
-    <%= issue_supply_item_form_tags(supply_items) %>
+    <%= render partial: 'supply_items/supply_items_for_issue', locals: { supply_items: supply_items, total: @total } %>
   </div>
 
   <p class="buttons">

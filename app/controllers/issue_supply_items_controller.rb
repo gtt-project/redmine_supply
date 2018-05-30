@@ -6,9 +6,12 @@ class IssueSupplyItemsController < ApplicationController
   helper :supply_items
 
   def new
+    query = RedmineSupply::SupplyItemsQuery.new(project: @project)
+    @supply_items = query.to_a
+    @total = query.total
   end
 
-  def append
+  def create
     if params[:issue] and attrs = params[:issue][:issue_supply_items_attributes]
 
       @issue_supply_items = attrs.map{ |hsh|
@@ -22,9 +25,6 @@ class IssueSupplyItemsController < ApplicationController
     if @issue_supply_items.blank?
       head 200
     end
-  end
-
-  def create
   end
 
   def destroy

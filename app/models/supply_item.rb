@@ -8,10 +8,9 @@ class SupplyItem < ActiveRecord::Base
                    uniqueness: { case_sensitive: false,
                                  scope: :project_id }
 
-  enum unit: {
-    piece: 1,
-    kg: 2,
-  }
+  scope :sorted, ->{ order name: :asc}
+
+  enum unit: RedmineSupply::Unit.all
 
 
   scope :like, ->(q){
@@ -24,5 +23,8 @@ class SupplyItem < ActiveRecord::Base
     end
   }
 
+  def unit_name
+    I18n.t :"label_supply_item_unit_#{unit}"
+  end
 
 end

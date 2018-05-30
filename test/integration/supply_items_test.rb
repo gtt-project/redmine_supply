@@ -15,7 +15,7 @@ class SupplyItemsTest < Redmine::IntegrationTest
   def test_supply_items_require_permission
     log_user 'jsmith', 'jsmith'
 
-    get '/projects/ecookbook/settings'
+    get '/projects/ecookbook'
     assert_response :success
     assert_select 'li a', text: 'Supply items', count: 0
     post '/projects/ecookbook/supply_items', params: { supply_item: { name: 'new' }}
@@ -24,13 +24,14 @@ class SupplyItemsTest < Redmine::IntegrationTest
 
   def test_supply_item_crud
     Role.find(1).add_permission! :manage_supply_items
+    Role.find(1).add_permission! :view_supply_items
 
     log_user 'jsmith', 'jsmith'
 
-    get '/projects/ecookbook/settings'
-    assert_select 'li a', text: 'Supply items'
+    get '/projects/ecookbook'
+    assert_select '#main-menu li a', text: 'Supply items'
 
-    get '/projects/ecookbook/settings/supply_items'
+    get '/projects/ecookbook/supply_items'
     assert_response :success
 
     get '/projects/ecookbook/supply_items/new'
@@ -39,7 +40,7 @@ class SupplyItemsTest < Redmine::IntegrationTest
     assert_difference 'SupplyItem.count' do
       post '/projects/ecookbook/supply_items', params: { supply_item: { name: 'test', description: 'lorem ipsum'}}
     end
-    assert_redirected_to '/projects/ecookbook/settings/supply_items'
+    assert_redirected_to '/projects/ecookbook/supply_items'
 
     follow_redirect!
 
@@ -58,7 +59,7 @@ class SupplyItemsTest < Redmine::IntegrationTest
     assert_difference 'SupplyItem.count', -1 do
       delete "/projects/ecookbook/supply_items/#{i.id}"
     end
-    assert_redirected_to '/projects/ecookbook/settings/supply_items'
+    assert_redirected_to '/projects/ecookbook/supply_items'
   end
 end
 
