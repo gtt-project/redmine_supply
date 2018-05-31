@@ -15,6 +15,7 @@ en:
   label_supply_item_unit_piece: pcs
   label_supply_item_unit_kg: kg
   label_supply_item_more_items: Showing %{shown} of %{total} results.
-  text_supply_item_created: "Supply item %{name} created: #{stock}"
+  text_supply_item_created: "Supply item %{name} created: %{stock}"
   text_supply_item_updated: "Supply item %{name}: %{change}"
   text_supply_item_nochange: no change
+  text_issue_supply_item_changed: "Issue #%{id}: %{name} was changed (%{change})"

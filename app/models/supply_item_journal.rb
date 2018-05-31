@@ -10,13 +10,10 @@ class SupplyItemJournal < ActiveRecord::Base
   validates :supply_item, presence: true
 
   acts_as_event(
-    title: :title,
+    title: :activity_title,
     description: '',
     datetime: :created_at,
-    url: ->(o){
-      { controller: 'supply_items', action: 'index',
-        project_id: o.supply_item.project.to_param }
-    },
+    url: :activity_url
   )
 
   acts_as_activity_provider(
@@ -28,11 +25,20 @@ class SupplyItemJournal < ActiveRecord::Base
 
 
   # implement in subclasses
-  def title
+  def activity_title
     to_s
+  end
+
+  def activity_url
+    {
+      controller: 'supply_items',
+      action: 'index',
+      project_id: supply_item.project.to_param
+    }
   end
 
   def change
     new_stock - old_stock if new_stock && old_stock
   end
+
 end

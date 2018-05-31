@@ -15,7 +15,7 @@ class SupplyItemsController < ApplicationController
   end
 
   def index
-    @supply_items = SupplyItem.where project_id: @project.id
+    @supply_items = SupplyItem.order(name: :asc).where project_id: @project.id
   end
 
   def edit

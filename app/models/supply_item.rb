@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SupplyItem < ActiveRecord::Base
   belongs_to :project
   has_many :issue_supply_items
@@ -27,8 +29,8 @@ class SupplyItem < ActiveRecord::Base
     end
   }
 
-  def stock_text
-    "#{stock} #{unit_name}"
+  def stock_text(amount = self.stock)
+    "#{amount} #{unit_name}"
   end
 
   def unit_name

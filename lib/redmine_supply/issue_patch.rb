@@ -33,14 +33,14 @@ module RedmineSupply
         if quantity.zero?
           # an item is removed by setting it's quantity to zero
           if id
-            IssueSupplyItem.where(id: id).delete_all
+            issue_supply_items.where(id: id).destroy_all
           end
           true # remove this element
         elsif item = issue_supply_items
             .where(supply_item_id: hsh['supply_item_id']).first
           # set the new item quantity of an already existing record for this
           # item:
-          item.update_column :quantity, quantity
+          item.update_attribute :quantity, quantity
           true # remove this element
         else
           false # keep it and let super handle it
