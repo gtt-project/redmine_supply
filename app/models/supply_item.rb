@@ -27,6 +27,10 @@ class SupplyItem < ActiveRecord::Base
     end
   }
 
+  def stock_text
+    "#{stock} #{unit_name}"
+  end
+
   def unit_name
     I18n.t :"label_supply_item_unit_#{unit}"
   end

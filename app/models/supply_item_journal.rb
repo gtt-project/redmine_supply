@@ -2,24 +2,16 @@ class SupplyItemJournal < ActiveRecord::Base
 
   belongs_to :supply_item
   belongs_to :user
+  alias author user
+
+  delegate :project, to: :supply_item
 
   validates :type, presence: true
   validates :supply_item, presence: true
 
   acts_as_event(
-    title: ->(o){
-      case o
-      when SupplyItemCreation
-        I18n.t :text_supply_item_created, name: o.name
-      when SupplyItemUpdate
-        I18n.t :text_supply_item_updated, name: o.name
-      else
-        I18n.t :text_supply_item_used, name: o.name
-      end
-    },
-    description: ->(o){
-      o.inspect
-    },
+    title: :title,
+    description: '',
     datetime: :created_at,
     url: ->(o){
       { controller: 'supply_items', action: 'index',
@@ -28,12 +20,17 @@ class SupplyItemJournal < ActiveRecord::Base
   )
 
   acts_as_activity_provider(
-    scope: eager_load(:supply_item),
+    scope: eager_load(supply_item: :project),
     author_key: 'supply_item_journals.user_id',
     timestamp: 'supply_item_journals.created_at',
     permission: :view_supply_items
   )
 
+
+  # implement in subclasses
+  def title
+    to_s
+  end
 
   def change
     new_stock - old_stock if new_stock && old_stock

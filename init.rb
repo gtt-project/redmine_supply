@@ -30,6 +30,8 @@ Redmine::Plugin.register :redmine_supply do
     }, require: :member
   end
 
+  activity_provider :supply_item_journals, class_name: 'SupplyItemJournal'
+
   menu :project_menu,
     :supply_items,
     { controller: 'supply_items', action: 'index' },
