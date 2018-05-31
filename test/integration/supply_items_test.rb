@@ -47,14 +47,16 @@ class SupplyItemsTest < Redmine::IntegrationTest
     assert i = SupplyItem.find_by_name('test')
     assert_equal 'lorem ipsum', i.description
     assert_equal 'ecookbook', i.project.identifier
+    assert_equal 0, i.stock
 
     get "/projects/ecookbook/supply_items/#{i.id}/edit"
     assert_response :success
 
-    patch "/projects/ecookbook/supply_items/#{i.id}", params: { supply_item: { name: 'new' } }
+    patch "/projects/ecookbook/supply_items/#{i.id}", params: { supply_item: { name: 'new', stock: 10 } }
     i.reload
     assert_equal 'lorem ipsum', i.description
     assert_equal 'new', i.name
+    assert_equal 10, i.stock
 
     assert_difference 'SupplyItem.count', -1 do
       delete "/projects/ecookbook/supply_items/#{i.id}"

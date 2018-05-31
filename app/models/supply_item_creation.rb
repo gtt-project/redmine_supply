@@ -1,0 +1,3 @@
+class SupplyItemCreation < SupplyItemJournal
+
+end

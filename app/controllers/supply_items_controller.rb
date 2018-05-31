@@ -59,7 +59,7 @@ class SupplyItemsController < ApplicationController
   private
 
   def supply_item_params
-    params[:supply_item].permit :name, :description, :unit
+    params[:supply_item].permit :name, :description, :unit, :stock
   end
 
   def find_supply_item

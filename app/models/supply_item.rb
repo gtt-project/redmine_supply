@@ -3,10 +3,14 @@ class SupplyItem < ActiveRecord::Base
   has_many :issue_supply_items
   has_many :issues, through: :issue_supply_items
 
+  has_many :journals, class_name: 'SupplyItemJournal', dependent: :delete_all
+
   validates :project, presence: true
   validates :name, presence: true,
                    uniqueness: { case_sensitive: false,
                                  scope: :project_id }
+  validates :stock, presence: true,
+                    numericality: { only_integer: true }
 
   scope :sorted, ->{ order name: :asc}
 

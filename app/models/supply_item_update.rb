@@ -1,0 +1,3 @@
+class SupplyItemUpdate < SupplyItemJournal
+
+end
