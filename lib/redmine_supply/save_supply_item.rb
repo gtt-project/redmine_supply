@@ -23,8 +23,6 @@ module RedmineSupply
 
       SupplyItem.transaction do
         save_supply_item
-      rescue ActiveRecord::RecordInvalid
-        @error = $!.message
       end
 
       if @error
@@ -53,6 +51,9 @@ module RedmineSupply
           old_stock: old_stock, new_stock: new_stock
         )
       end
+    rescue ActiveRecord::RecordInvalid
+      @error = $!.message
+      raise ActiveRecord::Rollback
     end
   end
 end

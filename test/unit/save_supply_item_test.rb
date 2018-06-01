@@ -14,6 +14,16 @@ class SaveSupplyItemTest < ActiveSupport::TestCase
     SupplyItem.delete_all
   end
 
+  test 'should require name' do
+    r = RedmineSupply::SaveSupplyItem.(
+      {name: '', stock: 5}, project: @project
+    )
+    refute r.supply_item_saved?, r.inspect
+    assert i = r.supply_item
+    refute i.persisted?
+    assert r.error.present?
+  end
+
   test 'should record stock change when created' do
     r = RedmineSupply::SaveSupplyItem.(
       {name: 'new item', stock: 5}, project: @project
