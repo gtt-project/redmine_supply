@@ -1,14 +1,21 @@
 ja:
   field_supply_item_description: 説明
   field_supply_item_unit: 単位
+  field_supply_item_stock: Stock
   field_issue_supply_item_names: 資材
   label_add_issue_supply_items: 資材を追加
   label_add_supply_items: 追加
   label_supply_item_description: 説明
+  label_supply_item_journal_plural: Supply Items
   label_supply_item_name: 名前
   label_supply_item_new: 新しい資材
   label_supply_item_plural: 資材
   label_supply_item_search: "資材を探す:"
+  label_supply_item_stock: Stock
   label_supply_item_unit_piece: ピース
   label_supply_item_unit_kg: kg
   label_supply_item_more_items: Showing %{shown} of %{total} results.
+  text_supply_item_created: "Supply item %{name} was created (%{stock})"
+  text_supply_item_updated: "Supply item %{name} was changed (%{change})"
+  text_supply_item_nochange: no change
+  text_issue_supply_item_changed: "Issue #%{id}: %{name} was changed (%{change})"

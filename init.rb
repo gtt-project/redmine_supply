@@ -9,7 +9,7 @@ Redmine::Plugin.register :redmine_supply do
   author 'Jens Krämer, Georepublic'
   author_url 'https://hub.georepublic.net/gtt/redmine_supply'
   description 'Add configurable supply items to issues'
-  version '1.1.0'
+  version '1.2.0'
 
   requires_redmine version_or_higher: '3.4.0'
 
@@ -29,6 +29,8 @@ Redmine::Plugin.register :redmine_supply do
       supply_items: %i( autocomplete )
     }, require: :member
   end
+
+  activity_provider :supply_item_journals, class_name: 'SupplyItemJournal'
 
   menu :project_menu,
     :supply_items,
