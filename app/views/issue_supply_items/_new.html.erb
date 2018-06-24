@@ -9,7 +9,7 @@
   <%= hidden_field_tag 'project_id', @project.id if @project %>
 
   <p><%= label_tag 'supply_item_search', l(:label_supply_item_search) %><%= text_field_tag 'supply_item_search', nil %></p>
-  <%= javascript_tag "observeSearchfield('supply_item_search', 'supply_items_for_issue', '#{ j autocomplete_project_supply_items_url(
+  <%= javascript_tag "observeSearchfield('supply_item_search', 'supply_items_for_issue', '#{ j autocomplete_project_supply_items_path(
                  issue_id: (issue.id if issue),
                  project_id: @project) }')" %>
 
