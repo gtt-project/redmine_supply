@@ -1,0 +1,4 @@
+$('#ajax-modal').html('<%= j render partial: 'issue_resource_items/new', locals: { issue: @issue, resource_items: @resource_items, categories: @categories, category: @category } %>');
+showModal('ajax-modal', '400px');
+$('#ajax-modal').addClass('new-resource-items');
+

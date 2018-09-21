@@ -1,8 +1,20 @@
 en:
+  field_resource_category: Category
   field_supply_item_description: Description
   field_supply_item_unit: Unit
   field_supply_item_stock: Stock
   field_issue_supply_item_names: Supply Items
+  label_add_issue_resource_items: Add resources
+  label_add_resource_items: Add
+  label_resource_category_name: Name
+  label_resource_category_new: New resource category
+  label_resource_category_plural: Resource categories
+  label_resource_item_category: Category
+  label_resource_item_name: Name
+  label_resource_item_new: New resource
+  label_resource_item_plural: Resources
+  label_resource_item_search: Search resources
+  label_resource_item_more_items: Showing %{shown} of %{total} results.
   label_add_issue_supply_items: Add supply items
   label_add_supply_items: Add
   label_supply_item_description: Description
@@ -15,6 +27,11 @@ en:
   label_supply_item_unit_piece: pcs
   label_supply_item_unit_kg: kg
   label_supply_item_more_items: Showing %{shown} of %{total} results.
+  permission_manage_issue_resources: Manage issue resources
+  permission_manage_resource_categories: Manage resource categories
+  permission_manage_resource_items: Manage resource items
+  permission_view_resource_items: View resource items
+  permission_view_issue_resources: View issue resources
   text_supply_item_created: "Supply item %{name} was created (%{stock})"
   text_supply_item_updated: "Supply item %{name} was changed (%{change})"
   text_supply_item_nochange: no change

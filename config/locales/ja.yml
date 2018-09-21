@@ -1,10 +1,22 @@
 ja:
+  field_resource_category: カテゴリー
   field_supply_item_description: 説明
   field_supply_item_unit: 単位
   field_supply_item_stock: Stock
   field_issue_supply_item_names: 資材
+  label_add_issue_resource_items: リソースを追加
   label_add_issue_supply_items: 資材を追加
+  label_add_resource_items: 追加
   label_add_supply_items: 追加
+  label_resource_category_name: 名前
+  label_resource_category_new: 新しいリソースのカテゴリー
+  label_resource_category_plural: リソースのカテゴリー
+  label_resource_item_category: カテゴリー
+  label_resource_item_name: 名前
+  label_resource_item_new: 新しいリソース
+  label_resource_item_plural: リソース
+  label_resource_item_search: リソースを検索
+  label_resource_item_more_items: Showing %{shown} of %{total} results.
   label_supply_item_description: 説明
   label_supply_item_journal_plural: Supply Items
   label_supply_item_name: 名前
@@ -15,6 +27,11 @@ ja:
   label_supply_item_unit_piece: ピース
   label_supply_item_unit_kg: kg
   label_supply_item_more_items: Showing %{shown} of %{total} results.
+  permission_manage_resource_categories: リソースのカテゴリを管理
+  permission_manage_resource_items: リソースの項目を管理
+  permission_view_resource_items: リソースの項目を閲覧
+  permission_view_issue_resources: イシューのリソースを閲覧
+  permission_manage_issue_resources: イシューのリソースを管理
   text_supply_item_created: "Supply item %{name} was created (%{stock})"
   text_supply_item_updated: "Supply item %{name} was changed (%{change})"
   text_supply_item_nochange: no change

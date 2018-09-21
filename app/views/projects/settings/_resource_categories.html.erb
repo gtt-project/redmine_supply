@@ -1,0 +1,6 @@
+<p>
+  <%= link_to l(:label_resource_category_new), new_project_resource_category_path(@project), class: 'icon icon-add' %>
+</p>
+
+<%= render partial: 'resource_categories/list', locals: { resource_categories: @project.resource_categories.sorted } %>
+

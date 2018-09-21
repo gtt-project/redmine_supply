@@ -1,0 +1,16 @@
+<% if resource_categories.any? %>
+  <table class="list resource_categories">
+    <thead>
+      <tr>
+        <th><%= l :label_resource_category_name %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render collection: resource_categories, partial: 'resource_categories/resource_category' %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="nodata"><%= l :label_no_data %></p>
+<% end %>
+

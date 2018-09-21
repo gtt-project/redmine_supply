@@ -1,0 +1,5 @@
+<%= resource_item_form_tags resource_items %>
+<% if total > resource_items.size %>
+  <%= l :label_resource_item_more_items, shown: resource_items.size, total: total %>
+<% end %>
+

@@ -1,0 +1,11 @@
+<%= title [l(:label_resource_category_plural), settings_project_path(@project, tab: 'resource_categories')], @resource_category.name %>
+
+<%= labelled_form_for @resource_category, url: project_resource_category_path(@project, @resource_category), method: :patch do |f| %>
+  <%= render partial: 'form', locals: { f: f } %>
+  <p>
+    <%= submit_tag l :button_save %>
+  </p>
+<% end %>
+
+
+

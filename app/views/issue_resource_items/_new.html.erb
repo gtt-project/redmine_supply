@@ -1,0 +1,35 @@
+<h3 class="title"><%= l(:label_add_issue_resource_items) %></h3>
+
+<%= form_tag(project_issue_resource_items_path(@project),
+             remote: true,
+             method: :post,
+             id: 'new-issue-resource-items-form') do %>
+
+  <%= hidden_field_tag :issue_id, issue.id, id: 'resource_item_issue_id' if issue %>
+
+  <p>
+    <label for="category_id"><%= l :field_resource_category %>:</label>
+    <%= select_tag :category_id, options_from_collection_for_select(categories, :id, :name, category), onchange: "updateIssueResourceForm();" %></p>
+
+  <div id="resource_item_search_fields">
+
+    <p>
+      <%= label_tag 'resource_item_search', l(:label_resource_item_search) %>
+      <%= text_field_tag 'resource_item_search', nil %>
+    </p>
+
+    <%= javascript_tag "observeResourceItemSearchfield('#{ j autocomplete_project_resource_items_path(@project, issue_id: issue.try(:id)) }');" %>
+
+    <div id="resource_items_for_issue">
+      <%= render partial: 'resource_items/resource_items_for_issue', locals: { resource_items: resource_items, total: @total } %>
+    </div>
+
+  </div>
+
+
+  <p class="buttons">
+    <%= submit_tag l(:button_add), name: nil, onclick: "hideModal(this);" %>
+    <%= submit_tag l(:button_cancel), name: nil, onclick: "hideModal(this);", type: 'button' %>
+  </p>
+<% end %>
+

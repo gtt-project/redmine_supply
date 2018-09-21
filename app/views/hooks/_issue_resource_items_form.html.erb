@@ -1,0 +1,6 @@
+<% if User.current.allowed_to?(:manage_issue_resources, @project) and @project.resource_items.any? %>
+  <div id="issue_resource_items_form_container">
+    <%= render partial: 'issue_resource_items/issue_form' %>
+  </div>
+<% end %>
+

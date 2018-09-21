@@ -1,0 +1,7 @@
+var wrapper = $('#resource_item_list');
+<% @issue_resource_items.each do |item| %>
+  var i = $('#<%= j dom_id item.resource_item %>');
+  if(i.size() == 0){
+    wrapper.append('<%= j issue_resource_item_form_tag item %>');
+  }
+<% end %>
