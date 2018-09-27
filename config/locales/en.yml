@@ -12,8 +12,20 @@ en:
   label_supply_item_plural: Supply items
   label_supply_item_search: "Search for supply items:"
   label_supply_item_stock: Stock
-  label_supply_item_unit_piece: pcs
+  label_supply_item_unit_cm: cm
   label_supply_item_unit_kg: kg
+  label_supply_item_unit_L: L
+  label_supply_item_unit_m: m
+  label_supply_item_unit_m3: m3
+  label_supply_item_unit_t: t
+  label_supply_item_unit_piece1: pcs
+  label_supply_item_unit_piece2: pcs
+  label_supply_item_unit_piece3: pcs
+  label_supply_item_unit_piece4: pcs
+  label_supply_item_unit_piece5: pcs
+  label_supply_item_unit_piece6: pcs
+  label_supply_item_unit_piece7: pcs
+  label_supply_item_unit_piece8: pcs
   label_supply_item_more_items: Showing %{shown} of %{total} results.
   text_supply_item_created: "Supply item %{name} was created (%{stock})"
   text_supply_item_updated: "Supply item %{name} was changed (%{change})"
