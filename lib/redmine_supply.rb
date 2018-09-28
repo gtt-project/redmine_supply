@@ -1,3 +1,4 @@
+require 'redmine_supply/hooks'
 require 'redmine_supply/view_hooks'
 
 module RedmineSupply

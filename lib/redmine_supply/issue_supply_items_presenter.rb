@@ -1,5 +1,5 @@
 module RedmineSupply
-  class IssueSupplyItemsPresenter
+  class IssueSupplyItemsPresenter < Presenter
     def initialize(scope)
       @scope = scope.
         includes(:supply_item).
@@ -19,10 +19,6 @@ module RedmineSupply
     def issue_supply_item_tag(issue_supply_item)
       item = issue_supply_item.supply_item
       "#{h item.name} (#{h issue_supply_item.quantity} #{h item.unit_name})"
-    end
-
-    def h(s)
-      ERB::Util.h s
     end
   end
 end

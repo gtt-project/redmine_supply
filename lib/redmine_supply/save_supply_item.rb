@@ -1,11 +1,7 @@
 module RedmineSupply
-  class SaveSupplyItem
+  class SaveSupplyItem < Action
 
     Result = ImmutableStruct.new :supply_item_saved?, :supply_item, :error
-
-    def self.call(*_)
-      new(*_).call
-    end
 
     def initialize(params, supply_item: SupplyItem.new,
                            project: supply_item.project,
