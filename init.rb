@@ -29,9 +29,6 @@ Redmine::Plugin.register :redmine_supply do
       issue_supply_items: %i( new create destroy append ),
       supply_items: %i( autocomplete )
     }, require: :member
-  end
-
-  project_module :resource_manager do
 
     permission :manage_resource_categories, {
       resource_categories: %i( new edit update create destroy ),
