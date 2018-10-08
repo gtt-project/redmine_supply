@@ -19,7 +19,8 @@ class UpdateStockTest < ActiveSupport::TestCase
       {name: 'new item', stock: 5}, project: @project
     ).supply_item
 
-    r = RedmineSupply::UpdateStock.('0.5', supply_item: s)
+    u = SupplyItemStockUpdate.new stock_change: '0.5'
+    r = RedmineSupply::UpdateStock.(u, supply_item: s)
     assert r.supply_item_saved?, r.inspect
     s.reload
     assert_equal 5.5, s.stock
@@ -28,13 +29,15 @@ class UpdateStockTest < ActiveSupport::TestCase
     assert_equal 0.5, j.change
 
 
-    r = RedmineSupply::UpdateStock.('-1.5', supply_item: s)
+    u = SupplyItemStockUpdate.new stock_change: '-1.5', comment: 'schwund'
+    r = RedmineSupply::UpdateStock.(u, supply_item: s)
     assert r.supply_item_saved?, r.inspect
     s.reload
     assert_equal 4, s.stock
 
     assert j = s.journals.last
     assert_equal(-1.5, j.change)
+    assert_equal 'schwund', j.comment
 
   end
 

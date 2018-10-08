@@ -20,6 +20,9 @@ class SupplyItemsController < ApplicationController
 
   def edit
     @supply_item = find_supply_item
+    @history = RedmineSupply::SupplyItemHistory.new(
+      @supply_item, page: params[:page], per_page: per_page_option
+    )
   end
 
   def edit_stock
@@ -31,7 +34,7 @@ class SupplyItemsController < ApplicationController
     @supply_item = find_supply_item
     @supply_item_stock_update = SupplyItemStockUpdate.new stock_change_params
     if @supply_item_stock_update.valid?
-      r = RedmineSupply::UpdateStock.(@supply_item_stock_update.stock_change,
+      r = RedmineSupply::UpdateStock.(@supply_item_stock_update,
                                       supply_item: @supply_item)
       if r.supply_item_saved?
         @location = edit_project_supply_item_path(@project, @supply_item)
@@ -77,7 +80,7 @@ class SupplyItemsController < ApplicationController
 
   def stock_change_params
     if params[:supply_item_stock_update]
-      params[:supply_item_stock_update].permit :stock_change
+      params[:supply_item_stock_update].permit :stock_change, :comment
     else
       {}
     end

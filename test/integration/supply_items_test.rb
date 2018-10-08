@@ -36,11 +36,14 @@ class SupplyItemsTest < Redmine::IntegrationTest
     xhr :get, "/projects/ecookbook/supply_items/#{i.id}/stock"
     assert_response :success
 
-    xhr :patch, "/projects/ecookbook/supply_items/#{i.id}/stock", supply_item_stock_update: { stock_change: '1.2' }
+    xhr :patch, "/projects/ecookbook/supply_items/#{i.id}/stock", supply_item_stock_update: { stock_change: '1.2', comment: 'neuzugang' }
     assert_response :success
 
     i.reload
     assert_equal 2.7, i.stock
+    get "/projects/ecookbook/supply_items/#{i.id}/edit"
+    assert_response :success
+    assert_select 'table.supply_item_journals td', 'neuzugang'
   end
 
   def test_supply_item_crud

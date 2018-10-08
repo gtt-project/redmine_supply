@@ -3,9 +3,10 @@ module RedmineSupply
 
     Result = ImmutableStruct.new :supply_item_saved?, :error
 
-    def initialize(change, supply_item:,
+    def initialize(stock_update, supply_item:,
                            user: User.current || User.anonymous)
-      @change = change.to_f
+      @change = stock_update.stock_change.to_f
+      @comment = stock_update.comment
       @supply_item = supply_item
       @user = user
     end
@@ -30,6 +31,7 @@ module RedmineSupply
       @supply_item.save!
       unless old_stock == new_stock
         SupplyItemUpdate.create!(
+          comment: @comment,
           supply_item: @supply_item, user: @user,
           old_stock: old_stock, new_stock: new_stock
         )

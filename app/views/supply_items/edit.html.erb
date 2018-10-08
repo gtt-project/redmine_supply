@@ -14,3 +14,24 @@
 
 
 
+<% if @history.any? %>
+  <h3><%= l :label_supply_item_history %></h3>
+  <div class="autoscroll">
+  <table class="list supply_item_journals">
+    <thead>
+      <tr>
+        <th><%= l :label_date %></th>
+        <th class="stock"><%= l :label_supply_item_journal_change %></th>
+        <th class="stock"><%= l :label_supply_item_journal_new_stock %></th>
+        <th><%= l :label_issue %></th>
+        <th><%= l :label_comment %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render collection: @history.journals, partial: 'supply_items/supply_item_journal' %>
+    </tbody>
+  </table>
+  </div>
+
+  <span class="pagination"><%= pagination_links_full @history.paginator, @history.count %></span>
+<% end %>

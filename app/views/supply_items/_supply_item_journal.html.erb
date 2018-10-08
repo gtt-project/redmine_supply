@@ -1,0 +1,7 @@
+<tr>
+  <td><%= supply_item_journal.created_at %></td>
+  <td class="stock"><%= supply_item_journal.change %></td>
+  <td class="stock"><%= supply_item_journal.new_stock %></td>
+  <td class="text"><%= link_to_issue supply_item_journal.issue if supply_item_journal.issue %></td>
+  <td class="text"><%= supply_item_journal.comment %></td>
+</tr>

@@ -4,6 +4,7 @@ en:
   field_supply_item_unit: Unit
   field_supply_item_stock: Stock
   field_supply_item_stock_change: Stock change
+  field_supply_item_stock_change_comment: Comment
   field_issue_supply_item_names: Supply Items
   label_add_issue_resource_items: Add resources
   label_add_resource_items: Add
@@ -19,6 +20,9 @@ en:
   label_add_issue_supply_items: Add supply items
   label_add_supply_items: Add
   label_supply_item_description: Description
+  label_supply_item_history: History
+  label_supply_item_journal_change: Stock change
+  label_supply_item_journal_new_stock: New stock
   label_supply_item_journal_plural: Supply Items
   label_supply_item_name: Name
   label_supply_item_new: New supply item
@@ -34,6 +38,7 @@ en:
   permission_manage_resource_items: Manage resource items
   permission_view_resource_items: View resource items
   permission_view_issue_resources: View issue resources
+  text_supply_item_journal_created: "The supply item was created."
   text_supply_item_created: "Supply item %{name} was created (%{stock})"
   text_supply_item_updated: "Supply item %{name} was changed (%{change})"
   text_supply_item_nochange: no change
