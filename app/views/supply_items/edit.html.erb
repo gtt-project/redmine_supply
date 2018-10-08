@@ -1,3 +1,8 @@
+<% if User.current.allowed_to? :manage_supply_items, @project %>
+  <div class="contextual">
+    <%= link_to l(:label_supply_item_update_stock), edit_stock_project_supply_item_path(@project, @supply_item), class: 'icon icon-add', remote: true %>
+  </div>
+<% end %>
 <%= title [l(:label_supply_item_plural), settings_project_path(@project, tab: 'supply_items')], @supply_item.name %>
 
 <%= labelled_form_for @supply_item, url: project_supply_item_path(@project, @supply_item), method: :patch do |f| %>

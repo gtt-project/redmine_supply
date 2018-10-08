@@ -34,3 +34,6 @@ table.list.supply_items tbody td.text { text-align: left; }
 #supply_items_inputs .unit {
   margin-left: 5px;
 }
+#ajax-modal.update-supply-item label.error {
+  color: #bb0000;
+}

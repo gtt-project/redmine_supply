@@ -17,7 +17,7 @@ Redmine::Plugin.register :redmine_supply do
   project_module :supply do
 
     permission :manage_supply_items, {
-      supply_items: %i( index new edit update create destroy ),
+      supply_items: %i( index new edit update create destroy edit_stock update_stock),
     }, require: :member
 
     permission :view_supply_items, {

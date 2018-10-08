@@ -46,3 +46,5 @@ $(document).on('click', '.issue_resource_item_wrap a.icon-del', function(e){
   }
   return false;
 });
+
+

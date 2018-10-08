@@ -1,0 +1,5 @@
+<% if @location %>
+    window.location.href='<%= j @location %>';
+<% else %>
+    <%= render template: 'supply_items/edit_stock' %>
+<% end %>

@@ -1,0 +1,5 @@
+$('#ajax-modal').html('<%= j render partial: 'supply_items/edit_stock', locals: { supply_items: @supply_item } %>');
+showModal('ajax-modal', '400px');
+$('#ajax-modal').addClass('update-supply-item');
+
+

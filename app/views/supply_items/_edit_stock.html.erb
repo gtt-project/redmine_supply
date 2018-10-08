@@ -1,0 +1,12 @@
+<h3 class="title"><%= l(:label_supply_item_update_stock) %></h3>
+
+<%= labelled_form_for @supply_item_stock_update, url: update_stock_project_supply_item_path(@project, @supply_item), method: :patch, remote: true do |f| %>
+  <p><%= f.text_field :stock_change, required: true, size: 25, label: l(:field_supply_item_stock_change) %></p>
+  <p>
+    <%= submit_tag l :button_save %>
+  </p>
+<% end %>
+
+
+
+

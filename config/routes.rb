@@ -4,6 +4,10 @@ scope 'projects/:project_id' do
     collection do
       get :autocomplete
     end
+    member do
+      get :edit_stock, path: 'stock'
+      patch :update_stock, path: 'stock'
+    end
   end
 
   resources :issue_supply_items, only: %i( new create destroy ),
