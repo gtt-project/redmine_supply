@@ -1,6 +1,5 @@
 module RedmineSupply
   class SupplyItemsQuery
-    LIMIT = 10
 
     def initialize(project:, query: nil)
       @project = project
@@ -8,7 +7,7 @@ module RedmineSupply
     end
 
     def scope
-      all.sorted.limit LIMIT
+      all.sorted.limit Setting.search_results_per_page
     end
 
     def to_a

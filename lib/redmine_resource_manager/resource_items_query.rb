@@ -1,6 +1,5 @@
 module RedmineResourceManager
   class ResourceItemsQuery
-    LIMIT = 10
 
     def initialize(project:, query: nil, category_id: nil, issue_id: nil)
       @project = project
@@ -10,7 +9,7 @@ module RedmineResourceManager
     end
 
     def scope
-      all.sorted.limit LIMIT
+      all.sorted.limit Setting.search_results_per_page
     end
 
     # size before applying limit
