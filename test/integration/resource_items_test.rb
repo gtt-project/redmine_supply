@@ -11,7 +11,7 @@ class ResourceItemsTest < Redmine::IntegrationTest
 
     @project = Project.find 'ecookbook'
     @project.enabled_modules.create! name: 'issue_tracking'
-    @project.enabled_modules.create! name: 'resource_manager'
+    @project.enabled_modules.create! name: 'supply'
 
     @cat = @project.resource_categories.create! name: 'Car'
   end

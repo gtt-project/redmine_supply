@@ -16,7 +16,7 @@ class IssueSupplyItemsController < ApplicationController
 
       @issue_supply_items = attrs.map{ |hsh|
         if i = @project.supply_items.find_by_id(hsh[:supply_item_id]) and
-          (quantity = hsh[:quantity].to_i) > 0
+          (quantity = hsh[:quantity].to_f) > 0
 
           IssueSupplyItem.new supply_item: i, quantity: quantity
         end

@@ -3,7 +3,7 @@
   if (wrap.size() > 0) {
     var quantity = wrap.find('input').val();
     if (quantity) {
-      quantity = parseInt(quantity);
+      quantity = parseFloat(quantity);
     } else {
       quantity = 0;
     }

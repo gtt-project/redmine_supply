@@ -20,7 +20,7 @@ class HooksTest < ActiveSupport::TestCase
                                                                   json: json)
     assert items = json[:supply_items]
     assert_equal 1, items.size
-    assert_equal "#{@item.name} (1 pcs)", items.first
+    assert_equal "#{@item.name} (1.0 pcs)", items.first
 
     assert items = json[:resource_items]
     assert_equal 1, items.size

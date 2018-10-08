@@ -11,8 +11,7 @@ class SupplyItem < ActiveRecord::Base
   validates :name, presence: true,
                    uniqueness: { case_sensitive: false,
                                  scope: :project_id }
-  validates :stock, presence: true,
-                    numericality: { only_integer: true }
+  validates :stock, presence: true, numericality: true
 
   scope :sorted, ->{ order name: :asc}
 

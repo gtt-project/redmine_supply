@@ -16,7 +16,7 @@ module RedmineSupply
     end
 
     def call
-      Rails.logger.error "\n@@@ supply_item #{@supply_item.name}: #{@change}"
+      #Rails.logger.error "\n@@@ supply_item #{@supply_item.name}: #{@change}"
       SupplyItem.transaction do
         item = SupplyItem.lock.find(@supply_item.id)
         new_stock = item.stock + @change

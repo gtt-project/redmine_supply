@@ -28,7 +28,7 @@ module RedmineSupply
       # destroyed as well
       attributes = attributes.reject{ |hsh|
         id       = hsh['id']
-        quantity = hsh['quantity'].to_i
+        quantity = hsh['quantity'].to_f
 
         if quantity.zero?
           # an item is removed by setting it's quantity to zero

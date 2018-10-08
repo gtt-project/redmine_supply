@@ -55,7 +55,7 @@ class IssueSupplyItemsTest < Redmine::IntegrationTest
       issue: {
         subject: 'test',
         issue_supply_items_attributes: [
-          {"quantity"=>"10", "supply_item_id"=>sand.id.to_s}
+          {"quantity"=>"10.5", "supply_item_id"=>sand.id.to_s}
         ]
       }
     }
@@ -63,18 +63,18 @@ class IssueSupplyItemsTest < Redmine::IntegrationTest
     sand.reload
     assert_equal 1, sand.issue_supply_items.count
     assert issue_supply_item = sand.issue_supply_items.first
-    assert_equal 10, issue_supply_item.quantity
+    assert_equal 10.5, issue_supply_item.quantity
     assert issue = issue_supply_item.issue
     assert_equal 'test', issue.subject
 
     follow_redirect!
     assert_response :success
     assert_select 'label', text: 'Supply items'
-    assert_select 'div.value', text: 'Sand (10 kg)'
+    assert_select 'div.value', text: 'Sand (10.5 kg)'
 
     get "/issues/#{issue.id}/edit"
     assert_response :success
-    assert_select "#supply_item_#{sand.id}_wrap input[value=\"10\"]"
+    assert_select "#supply_item_#{sand.id}_wrap input[value=\"10.5\"]"
     assert_select "#supply_item_#{sand.id}_wrap label", text: 'Sand'
 
 
@@ -92,7 +92,7 @@ class IssueSupplyItemsTest < Redmine::IntegrationTest
     follow_redirect!
     assert_response :success
     assert_select 'label', text: 'Supply items'
-    assert_select 'div.value', text: 'Sand (15 kg)'
+    assert_select 'div.value', text: 'Sand (15.0 kg)'
 
 
     put "/issues/#{issue.id}", params: {

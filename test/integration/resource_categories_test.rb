@@ -11,7 +11,7 @@ class ResourceCategoriesTest < Redmine::IntegrationTest
 
     @project = Project.find 'ecookbook'
     @project.enabled_modules.create! name: 'issue_tracking'
-    @project.enabled_modules.create! name: 'resource_manager'
+    @project.enabled_modules.create! name: 'supply'
   end
 
   def test_resource_categories_require_permission

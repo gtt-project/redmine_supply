@@ -30,17 +30,18 @@ class IssueSupplyItemChangeTest < ActiveSupport::TestCase
 
     isi = nil
     assert_difference 'IssueSupplyItemChange.count' do
-      isi = IssueSupplyItem.create! issue: @issue, supply_item: i, quantity: 1
+      isi = IssueSupplyItem.create! issue: @issue, supply_item: i, quantity: 1.5
     end
+    assert_equal 1.5, isi.quantity
 
     i.reload
-    assert_equal 4, i.stock
+    assert_equal 3.5, i.stock
 
     c = IssueSupplyItemChange.last
     assert_equal @issue, c.issue
     assert_equal i, c.supply_item
     assert_equal 5, c.old_stock
-    assert_equal 4, c.new_stock
+    assert_equal 3.5, c.new_stock
 
     assert_difference 'IssueSupplyItemChange.count' do
       isi.update_attribute :quantity, 2
@@ -52,7 +53,7 @@ class IssueSupplyItemChangeTest < ActiveSupport::TestCase
     c = IssueSupplyItemChange.last
     assert_equal @issue, c.issue
     assert_equal i, c.supply_item
-    assert_equal 4, c.old_stock
+    assert_equal 3.5, c.old_stock
     assert_equal 3, c.new_stock
 
 
