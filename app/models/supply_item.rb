@@ -17,6 +17,23 @@ class SupplyItem < ActiveRecord::Base
 
   enum unit: RedmineSupply::Unit.all
 
+  acts_as_customizable
+
+  # Overrides Redmine::Acts::Customizable::InstanceMethods#available_custom_fields
+  # copied from issue.rb
+  def available_custom_fields
+    project.all_supply_item_custom_fields
+  end
+
+  # Overrides
+  # Redmine::Acts::Customizable::InstanceMethods#visible_custom_field_values
+  # copied from issue.rb
+  def visible_custom_field_values(user=nil)
+    user_real = user || User.current
+    custom_field_values.select do |value|
+      value.custom_field.visible_by?(project, user_real)
+    end
+  end
 
   scope :like, ->(q){
     if q.present?

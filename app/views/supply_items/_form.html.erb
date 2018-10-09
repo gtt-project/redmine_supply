@@ -8,6 +8,10 @@
     <p><%= f.label :stock %><span><%= @supply_item.stock %></span></p>
   <% end %>
   <p><%= f.select :unit, SupplyItem.units.keys.map{|u|[t(:"label_supply_item_unit_#{u}"), u]}, label: l(:field_supply_item_unit) %></p>
+
+  <% f.object.visible_custom_field_values.each do |value| %>
+    <p><%= custom_field_tag_with_label :supply_item, value %></p>
+  <% end %>
   <p><%= f.text_area :description, label: l(:field_supply_item_description), rows: 10 %></p>
 </div>
 
