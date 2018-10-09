@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'redmine_supply/hooks'
 require 'redmine_supply/view_hooks'
 
@@ -9,7 +11,9 @@ module RedmineSupply
     RedmineSupply::Patches::CustomFieldsHelperPatch.apply
 
     IssuesController.send :helper, :supply_items
+  end
 
-    Unit.load File.join File.dirname(__FILE__), '../config/units.yml'
+  def self.unit_cf
+    SupplyItemCustomField.find_by_name 'Unit'
   end
 end

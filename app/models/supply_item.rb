@@ -15,8 +15,6 @@ class SupplyItem < ActiveRecord::Base
 
   scope :sorted, ->{ order name: :asc}
 
-  enum unit: RedmineSupply::Unit.all
-
   acts_as_customizable
 
   # Overrides Redmine::Acts::Customizable::InstanceMethods#available_custom_fields
@@ -50,7 +48,11 @@ class SupplyItem < ActiveRecord::Base
   end
 
   def unit_name
-    I18n.t :"label_supply_item_unit_#{unit}"
+    return @unit_name if @unit_name
+
+    if cf = RedmineSupply.unit_cf
+      @unit_name = custom_field_value cf
+    end
   end
 
 end
