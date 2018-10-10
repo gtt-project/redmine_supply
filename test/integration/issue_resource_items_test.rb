@@ -59,6 +59,7 @@ class IssueResourceItemsTest < Redmine::IntegrationTest
     assert_select '.add_resource_items a', text: 'Add', count: 0
 
     Role.find(1).add_permission! :manage_issue_resources
+    Role.find(1).add_permission! :view_issue_resources
     get '/projects/ecookbook/issues/new'
     assert_response :success
     assert_select 'label', text: 'Resources'
@@ -73,6 +74,7 @@ class IssueResourceItemsTest < Redmine::IntegrationTest
   def test_issue_resource_items_editing
     item2 = @cat.resource_items.create! name: 'ASL-JJ 262'
     Role.find(1).add_permission! :manage_issue_resources
+    Role.find(1).add_permission! :view_issue_resources
     log_user 'jsmith', 'jsmith'
 
     get '/projects/ecookbook/issues/new'
@@ -101,7 +103,7 @@ class IssueResourceItemsTest < Redmine::IntegrationTest
     get "/issues/#{issue.id}/edit"
     assert_response :success
     assert_select 'label', text: 'Resources'
-    assert_select 'div.issue_resource_item_wrap', text: /RCM 429/
+    assert_select 'p.issue_resource_item_wrap', text: /RCM 429/
 
 
     put "/issues/#{issue.id}", params: {
