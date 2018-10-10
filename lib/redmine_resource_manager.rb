@@ -1,5 +1,3 @@
-require 'redmine_resource_manager/view_hooks'
-
 module RedmineResourceManager
   def self.setup
     RedmineResourceManager::IssuePatch.apply
