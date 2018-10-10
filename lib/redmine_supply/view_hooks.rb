@@ -9,7 +9,7 @@ module RedmineSupply
       partial: "hooks/issue_supply_items"
 
     render_on :view_issues_form_details_bottom,
-      partial: "hooks/issue_supply_items_form"
+      partial: "hooks/issues_form_details_bottom"
 
     render_on :view_custom_fields_form_supply_item_custom_field,
       partial: "hooks/supply_item_custom_field_form"

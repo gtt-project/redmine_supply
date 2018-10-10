@@ -9,9 +9,6 @@ module RedmineResourceManager
     render_on :view_issues_show_details_bottom,
       partial: "hooks/issue_resource_items"
 
-    render_on :view_issues_form_details_bottom,
-      partial: "hooks/issue_resource_items_form"
-
   end
 end
 
