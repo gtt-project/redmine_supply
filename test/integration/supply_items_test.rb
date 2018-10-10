@@ -11,6 +11,7 @@ class SupplyItemsTest < Redmine::IntegrationTest
     EnabledModule.delete_all
     EnabledModule.create! project: @project, name: 'supply'
     @user = User.find_by_login 'jsmith'
+    @unit = SupplyItemCustomField.generate_unit_field!
   end
 
   def test_supply_items_require_permission
@@ -29,9 +30,7 @@ class SupplyItemsTest < Redmine::IntegrationTest
 
     log_user 'jsmith', 'jsmith'
 
-    i = RedmineSupply::SaveSupplyItem.({name: 'test', stock:'1.5'},
-                                       project: @project,
-                                       user: @user).supply_item
+    i = SupplyItem.generate! stock: 1.5, project: @project
 
     xhr :get, "/projects/ecookbook/supply_items/#{i.id}/stock"
     assert_response :success
@@ -64,7 +63,7 @@ class SupplyItemsTest < Redmine::IntegrationTest
 
 
     assert_difference 'SupplyItem.count' do
-      post '/projects/ecookbook/supply_items', params: { supply_item: { name: 'test', description: 'lorem ipsum', stock: '2.3'}}
+      post '/projects/ecookbook/supply_items', params: { supply_item: { name: 'test', description: 'lorem ipsum', stock: '2.3', custom_field_values: {@unit.id.to_s => 'm'}}}
     end
     assert_redirected_to '/projects/ecookbook/supply_items'
 

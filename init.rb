@@ -21,8 +21,8 @@ Redmine::Plugin.register :redmine_supply do
     }, require: :member
 
     permission :view_supply_items, {
-      supply_items: %i( index ),
-    }, require: :member
+      supply_items: %i( index show ),
+    }, require: :member, read: true
 
     permission :view_issue_supply_items, {}, require: :member, read: true
     permission :manage_issue_supply_items, {

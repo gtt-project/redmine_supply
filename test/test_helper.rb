@@ -1,11 +1,29 @@
 require_relative '../../../test/test_helper'
 
+SupplyItemCustomField.class_eval do
+  def self.generate_unit_field!
+    find_by_name('Unit') || create!(name: 'Unit',
+                                    field_format: 'list',
+                                    is_for_all: true,
+                                    multiple: false,
+                                    is_required: true,
+                                    possible_values: "kg\nm\nm³\npcs")
+  end
+end
+
 SupplyItem.class_eval do
-  def self.generate!(name: 'supply item', stock: 5, project:)
-    RedmineSupply::SaveSupplyItem.(
-      { name: name, stock: stock },
+  def self.generate!(name: 'supply item', unit: 'pcs', stock: 5, project:)
+    unit_cf = SupplyItemCustomField.generate_unit_field!
+    r = RedmineSupply::SaveSupplyItem.(
+      { name: name, stock: stock, custom_field_values: { unit_cf.id => unit } },
       project: project
-    ).supply_item
+    )
+    if r.error
+      puts r.error.inspect
+      fail "error saving supply item"
+    else
+      return r.supply_item
+    end
   end
 end
 

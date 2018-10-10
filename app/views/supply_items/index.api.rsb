@@ -1,0 +1,14 @@
+api.array :supply_items do
+  @supply_items.each do |item|
+    api.supply_item do
+      api.id item.id
+      api.name item.name
+      api.description item.description
+      api.project_id item.project_id
+      api.stock item.stock
+
+      render_api_custom_values item.visible_custom_field_values, api
+    end
+  end
+end
+

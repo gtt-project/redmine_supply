@@ -1,0 +1,20 @@
+api.supply_item do
+  api.id @supply_item.id
+  api.name @supply_item.name
+  api.description @supply_item.description
+  api.project_id @supply_item.project_id
+  api.stock @supply_item.stock
+
+  render_api_custom_values @supply_item.visible_custom_field_values, api
+
+  api.array :history do
+    @supply_item.journals.order(:created_at).each do |j|
+      api.journal do
+        api.type j.type
+        api.comment j.comment
+        api.old_stock j.old_stock
+        api.new_stock j.new_stock
+      end
+    end
+  end
+end

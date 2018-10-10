@@ -40,11 +40,11 @@ class IssueSupplyItemsTest < Redmine::IntegrationTest
   end
 
   def test_issue_supply_items_editing
-    r = RedmineSupply::SaveSupplyItem.({name: 'Sand', unit: 'kg'}, project: @project)
-    assert sand = r.supply_item
-
     Role.find(1).add_permission! :manage_issue_supply_items
     log_user 'jsmith', 'jsmith'
+
+    sand = SupplyItem.generate! name: 'Sand', project: @project, unit: 'kg'
+
 
     get '/projects/ecookbook/issues/new'
     assert_response :success

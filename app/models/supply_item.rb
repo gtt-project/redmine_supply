@@ -20,7 +20,7 @@ class SupplyItem < ActiveRecord::Base
   # Overrides Redmine::Acts::Customizable::InstanceMethods#available_custom_fields
   # copied from issue.rb
   def available_custom_fields
-    project.all_supply_item_custom_fields
+    project&.all_supply_item_custom_fields || []
   end
 
   # Overrides
