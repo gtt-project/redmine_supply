@@ -20,12 +20,23 @@
 <% end %>
 
 </div>
-<div class="splitcontentright">
+<div class="splitcontentright" id="resource_item_list">
 
-<% if User.current.allowed_to?(:manage_issue_resources, @project) and @project.resource_items.any? %>
-  <div id="issue_resource_items_form_container">
-    <%= render partial: 'issue_resource_items/issue_form' %>
-  </div>
+<% if User.current.allowed_to?(:manage_issue_resources, @project) and @project.resource_items.any? and @issue.safe_attribute? 'issue_resource_items_attributes' -%>
+
+  <p>
+    <label><%= l(:label_resource_item_plural) %></label>
+    <span class="add_resource_items">
+      <%= link_to l(:label_add_resource_items),
+        new_project_issue_resource_item_path(@project, issue_id: @issue.id),
+        class: 'icon icon-add-bullet',
+        remote: true,
+        method: 'get' %>
+    </span>
+  </p>
+
+  <%= issue_resource_item_form_tags @issue.issue_resource_items %>
+
 <% end %>
 
 </div>

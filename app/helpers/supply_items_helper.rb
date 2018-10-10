@@ -11,7 +11,7 @@ module SupplyItemsHelper
     id = dom_id supply_item
     content_tag :p, id: "#{id}_wrap" do
       tags = [
-        content_tag(:label, supply_item.name, for: id),
+        content_tag(:label, supply_item.name, for: id, class: "supply-item"),
         text_field_tag('issue[issue_supply_items_attributes][][quantity]',
                        issue_supply_item.quantity, id: id, size: 3),
         content_tag(:span, supply_item.unit_name, class: 'unit'),

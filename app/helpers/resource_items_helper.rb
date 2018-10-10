@@ -28,7 +28,7 @@ module ResourceItemsHelper
 
   def issue_resource_item_form_tag(issue_resource_item)
     resource_item = issue_resource_item.resource_item
-    content_tag :div, id: dom_id(resource_item), class: 'issue_resource_item_wrap' do
+    content_tag :p, id: dom_id(resource_item), class: 'issue_resource_item_wrap' do
       safe_join([
         content_tag(:span, resource_item.name),
         link_to('', '#', class: 'icon icon-del'),

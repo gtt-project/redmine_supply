@@ -12,18 +12,20 @@ table.list.supply_item_journals thead th.stock {
   text-align: right;
 }
 
+label.supply-item {
+  font-weight: normal;
+}
+
 /* add items overlay */
-#supply_item_search { width: 90%; }
+#supply_item_search, #resource_item_search { width: 90%; }
 #supply_items_for_issue .unit, #supply_items_inputs .unit {
   margin-left: 5px;
   display: inline-block;
   width: 3em;
 }
-
 #supply_items_for_issue {
   text-align: right;
 }
-
 #supply_items_for_issue p {
   padding-left: 260px;
 }
@@ -34,31 +36,3 @@ table.list.supply_item_journals thead th.stock {
 #ajax-modal.update-supply-item label.error { color: #bb0000; }
 
 
-
-/* add items overlay */
-#resource_item_search { width: 90%; }
-#resource_items_for_issue .unit {
-  margin-left: 5px;
-  display: inline-block;
-  width: 3em;
-}
-
-/* resource items in issue form */
-
-#issue_resource_items_form_container {
-  margin: 5px 0;
-}
-
-#resource_items_form span.add_resource_items {
-  font-size: 80%;
-  line-height: 2.5em;
-}
-
-#resource_item_list label {
-  float: none;
-  font-weight: normal;
-}
-#resource_item_list .issue_resource_item_wrap {
-  float: left;
-  margin: 0 5px;
-}
