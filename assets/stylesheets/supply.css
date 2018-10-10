@@ -28,30 +28,6 @@ table.list.supply_item_journals thead th.stock {
   padding-left: 260px;
 }
 
-/* supply items in issue form */
-
-#issue_supply_items_form_container {
-  margin: 5px 0;
-}
-
-#supply_items_form span.add_supply_items {
-  font-size: 80%;
-  line-height: 2.5em;
-}
-
-#supply_items_inputs label {
-  margin-left: 5px;
-  float: none;
-  font-weight: normal;
-}
-#supply_items_inputs .supply_item_wrap {
-  float: left;
-  margin: 0 5px;
-}
-#supply_items_inputs .unit {
-  margin-left: 5px;
-}
-
 /* Supply item stock change modal */
 
 #ajax-modal.update-supply-item label { display: block; }

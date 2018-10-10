@@ -1,3 +1,6 @@
+<div class="splitcontent">
+
+<div class="splitcontentleft" id="supply_items_inputs">
 <% if User.current.allowed_to? :manage_issue_supply_items, @project and
       @issue.safe_attribute? 'issue_supply_items_attributes' -%>
 
@@ -14,14 +17,15 @@
   <% for item in @issue.issue_supply_items.sorted %>
     <%= issue_supply_item_form_tag item %>
   <% end %>
-
-
 <% end %>
+</div>
 
+<div class="splitcontentright">
 <% if User.current.allowed_to?(:manage_issue_resources, @project) and @project.resource_items.any? %>
   <div id="issue_resource_items_form_container">
     <%= render partial: 'issue_resource_items/issue_form' %>
   </div>
 <% end %>
+</div>
 
-
+</div>
