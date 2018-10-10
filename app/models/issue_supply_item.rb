@@ -5,6 +5,10 @@ class IssueSupplyItem < ActiveRecord::Base
   validates :supply_item, presence: true
   validates :quantity, presence: true, numericality: { greater_than: 0 }
 
+  scope :sorted, ->{
+    includes(:supply_item).order("#{SupplyItem.table_name}.name ASC")
+  }
+
   after_destroy ->(isi){
     RedmineSupply::RecordIssueSupplyItemChange.(isi.issue,
                                                 isi.supply_item,

@@ -1,9 +1,7 @@
 module RedmineSupply
   class IssueSupplyItemsPresenter < Presenter
     def initialize(scope)
-      @scope = scope.
-        includes(:supply_item).
-        order("#{SupplyItem.table_name}.name ASC")
+      @scope = scope.sorted
     end
 
     def call

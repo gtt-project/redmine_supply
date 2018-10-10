@@ -13,9 +13,9 @@
                  issue_id: (issue.id if issue),
                  project_id: @project) }')" %>
 
-  <div id="supply_items_for_issue">
+  <fieldset class="tabular" id="supply_items_for_issue">
     <%= render partial: 'supply_items/supply_items_for_issue', locals: { supply_items: supply_items, total: @total } %>
-  </div>
+  </fieldset>
 
   <p class="buttons">
     <%= submit_tag l(:button_add), name: nil, onclick: "hideModal(this);" %>

@@ -20,6 +20,14 @@ table.list.supply_item_journals thead th.stock {
   width: 3em;
 }
 
+#supply_items_for_issue {
+  text-align: right;
+}
+
+#supply_items_for_issue p {
+  padding-left: 260px;
+}
+
 /* supply items in issue form */
 
 #issue_supply_items_form_container {
