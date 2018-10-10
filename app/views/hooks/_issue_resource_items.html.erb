@@ -1,6 +1,0 @@
-<% if issue && (User.current.allowed_to?(:view_issue_resources, issue.project) || User.current.allowed_to?(:manage_issue_resources, issue.project)) && issue.issue_resource_items.any? %>
-  <%= issue_fields_rows do |rows|
-    rows.left l(:label_resource_item_plural), safe_join(RedmineSupply::ResourceItemsPresenter.(issue.resource_items), '<br />'.html_safe)
-  end %>
-<% end %>
-

@@ -6,9 +6,6 @@ module RedmineResourceManager
         <%= javascript_include_tag 'resource_manager', plugin: 'redmine_resource_manager' %>
     END
 
-    render_on :view_issues_show_details_bottom,
-      partial: "hooks/issue_resource_items"
-
   end
 end
 
