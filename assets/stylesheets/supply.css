@@ -26,6 +26,11 @@ label.supply-item {
 #supply_items_for_issue {
   text-align: right;
 }
+#supply_items_for_issue label {
+  margin-left: -255px;
+  width: 250px;
+}
+
 #supply_items_for_issue p {
   padding-left: 260px;
 }
