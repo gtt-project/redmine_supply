@@ -25,6 +25,8 @@ label.supply-item {
 }
 #supply_items_for_issue {
   text-align: right;
+  max-height: 400px;
+  overflow-y: scroll;
 }
 #supply_items_for_issue label {
   margin-left: -255px;
@@ -32,7 +34,7 @@ label.supply-item {
 }
 
 #supply_items_for_issue p {
-  padding-left: 260px;
+  padding-left: 250px;
 }
 
 /* Supply item stock change modal */
