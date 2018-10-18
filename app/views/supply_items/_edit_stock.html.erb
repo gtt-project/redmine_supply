@@ -5,7 +5,7 @@
     <%= f.text_field :stock_change, required: true, size: 25, label: l(:field_supply_item_stock_change) %>
   </p>
   <p>
-    <%= f.text_area :comment, size: 25, label: l(:field_supply_item_stock_change_comment) %>
+    <%= f.text_area :comment, cols: 50, label: l(:field_supply_item_stock_change_comment) %>
   </p>
   <p>
     <%= submit_tag l :button_save %>
