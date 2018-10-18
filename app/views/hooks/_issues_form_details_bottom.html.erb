@@ -15,7 +15,7 @@
     </span>
   </p>
   <% for item in @issue.issue_supply_items.sorted %>
-    <%= issue_supply_item_form_tag item %>
+    <%= issue_supply_item_form_tag item, deletable: true %>
   <% end %>
 <% end %>
 
