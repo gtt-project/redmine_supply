@@ -18,8 +18,8 @@
     <tbody>
       <% for i in @resource_items %>
         <tr>
-          <td><%= i.category.name %>
-          <td><%= link_to i.name, edit_project_resource_item_path(@project, i) %></td>
+          <td class="category"><%= i.category.name %>
+          <td class="name"><%= link_to i.name, edit_project_resource_item_path(@project, i) %></td>
           <td><%= delete_link project_resource_item_path(@project, i) %></td>
         </tr>
       <% end %>

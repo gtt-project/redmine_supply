@@ -1,11 +1,14 @@
 
-/* SupplyItems table */
+/* tables */
 
-table.list.supply_items tbody td.text { text-align: left; }
+table.list.supply_items tbody td.name,
+table.list.supply_items tbody td.description,
+table.list.supply_item_journals tbody td.name,
+table.list.resource_items tbody td.name {
+  text-align: left;
+}
 
 /* Supply item history */
-
-table.list.supply_item_journals tbody td.text { text-align: left; }
 
 table.list.supply_item_journals tbody td.stock,
 table.list.supply_item_journals thead th.stock {

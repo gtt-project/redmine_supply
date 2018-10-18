@@ -1,6 +1,6 @@
 <tr>
-  <td><%= link_to supply_item.name, edit_project_supply_item_path(supply_item.project, supply_item) %></td>
+  <td class="name"><%= link_to supply_item.name, edit_project_supply_item_path(supply_item.project, supply_item) %></td>
   <td><%= supply_item.stock_text %></td>
-  <td class="text"><div><%= textilizable supply_item.description %></div></td>
+  <td class="description"><div><%= textilizable supply_item.description %></div></td>
   <td><%= delete_link(project_supply_item_path(supply_item.project, supply_item)) %>
 </tr>
