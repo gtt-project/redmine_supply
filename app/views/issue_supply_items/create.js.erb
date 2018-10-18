@@ -8,6 +8,7 @@
       quantity = 0;
     }
     wrap.find('input[type=text]').val(quantity + <%= i.quantity %>);
+    wrap.show(); // it may have been hidden by a previous click on delete
   } else {
     $('#supply_items_inputs').append('<%= j issue_supply_item_form_tag(i) %>');
   }

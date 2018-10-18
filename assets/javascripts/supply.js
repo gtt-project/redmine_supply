@@ -35,8 +35,8 @@ function observeResourceItemSearchfield(url) {
   });
 }
 
+// issue resource item deletion
 $(document).on('click', '.issue_resource_item_wrap a.icon-del', function(e){
-
   var wrapper = $(this).parent();
   if(wrapper.find('input[name="issue[issue_resource_items_attributes][][id]"]').val() == '') {
     wrapper.remove();
@@ -44,6 +44,16 @@ $(document).on('click', '.issue_resource_item_wrap a.icon-del', function(e){
     wrapper.find('input[name="issue[issue_resource_items_attributes][][_destroy]"]').val('1');
     wrapper.hide();
   }
+  return false;
+});
+
+// issue supply item deletion
+$(document).on('click', '.issue_supply_item_wrap a.icon-del', function(e){
+  var wrapper = $(this).parent();
+  // set quantity to zero
+  wrapper.find('input[name="issue[issue_supply_items_attributes][][quantity]"]').val('0');
+  // hide the whole item
+  wrapper.hide();
   return false;
 });
 
