@@ -5,8 +5,9 @@ module RedmineSupply
     def redmine_gtt_print_issue_to_json(context)
       issue = context[:issue]
       json = context[:json]
-      json[:supply_items] = IssueSupplyItemsPresenter.(issue.issue_supply_items)
-      json[:resource_items] = ResourceItemsPresenter.(issue.resource_items)
+      attributes = json[:attributes] ||= {}
+      attributes[:supply_items] = IssueSupplyItemsPresenter.(issue.issue_supply_items)
+      attributes[:resource_items] = ResourceItemsPresenter.(issue.resource_items)
     end
   end
 end
