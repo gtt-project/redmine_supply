@@ -14,6 +14,7 @@ module RedmineSupply
   end
 
   def self.unit_cf
-    SupplyItemCustomField.find_by_name 'Unit'
+    name = Setting.plugin_redmine_supply["unit_cf"].presence || "Unit"
+    SupplyItemCustomField.find_by_name name
   end
 end

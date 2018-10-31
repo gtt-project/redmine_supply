@@ -14,6 +14,10 @@ Redmine::Plugin.register :redmine_supply do
 
   requires_redmine version_or_higher: '3.4.0'
 
+  settings default: {
+    "unit_cf" => "Unit"
+  }
+
   project_module :supply do
 
     permission :manage_supply_items, {
