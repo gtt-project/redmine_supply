@@ -1,4 +1,4 @@
-class CreateIssueSupplyItems < ActiveRecord::Migration
+class CreateIssueSupplyItems < ActiveRecord::Migration[5.2]
   def change
     create_table :issue_supply_items do |t|
       t.references :issue, null: false
