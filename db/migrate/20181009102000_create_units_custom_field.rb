@@ -1,4 +1,4 @@
-class CreateUnitsCustomField < ActiveRecord::Migration
+class CreateUnitsCustomField < ActiveRecord::Migration[5.2]
   def up
     unless RedmineSupply.unit_cf.present?
       SupplyItemCustomField.create! name: 'Unit',

@@ -1,4 +1,4 @@
-class CreateResourceItems < ActiveRecord::Migration
+class CreateResourceItems < ActiveRecord::Migration[5.2]
   def up
     create_table :resource_items do |t|
       t.references :category, null: false

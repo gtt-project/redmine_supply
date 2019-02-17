@@ -13,7 +13,7 @@ class SupplyItem < ActiveRecord::Base
   enum unit: Unit.all
 end
 
-class MigrateUnits < ActiveRecord::Migration
+class MigrateUnits < ActiveRecord::Migration[5.2]
   def up
     if cf = RedmineSupply.unit_cf
       SupplyItem.find_each do |i|
