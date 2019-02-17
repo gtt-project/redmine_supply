@@ -1,4 +1,4 @@
-class CreateSupplyItemJournals < ActiveRecord::Migration
+class CreateSupplyItemJournals < ActiveRecord::Migration[5.2]
   def change
     create_table :supply_item_journals do |t|
       t.string  :type, index: true, null: false

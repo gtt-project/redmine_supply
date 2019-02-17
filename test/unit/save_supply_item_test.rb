@@ -1,7 +1,8 @@
 require_relative '../test_helper'
 
 class SaveSupplyItemTest < ActiveSupport::TestCase
-  self.use_transactional_fixtures = false
+
+  self.use_transactional_tests = false
 
   fixtures :projects
 
