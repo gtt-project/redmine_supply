@@ -65,11 +65,11 @@ class ResourceItemsTest < Redmine::IntegrationTest
 
     log_user 'jsmith', 'jsmith'
 
-    xhr :get, '/projects/ecookbook/resource_items/autocomplete', { q: 'so'}
+    get '/projects/ecookbook/resource_items/autocomplete', params: { q: 'so'}, xhr: true
     assert_response 403
 
     Role.find(1).add_permission! :manage_issue_resources
-    xhr :get, '/projects/ecookbook/resource_items/autocomplete', { q: 'so'}
+    get '/projects/ecookbook/resource_items/autocomplete', params: { q: 'so'}, xhr: true
     assert_response :success
     assert_select 'label', text: 'some item'
   end

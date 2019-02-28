@@ -32,10 +32,10 @@ class SupplyItemsTest < Redmine::IntegrationTest
 
     i = SupplyItem.generate! stock: 1.5, project: @project
 
-    xhr :get, "/projects/ecookbook/supply_items/#{i.id}/stock"
+    get "/projects/ecookbook/supply_items/#{i.id}/stock", xhr: true
     assert_response :success
 
-    xhr :patch, "/projects/ecookbook/supply_items/#{i.id}/stock", supply_item_stock_update: { stock_change: '1.2', comment: 'neuzugang' }
+    patch "/projects/ecookbook/supply_items/#{i.id}/stock", params: { supply_item_stock_update: { stock_change: '1.2', comment: 'neuzugang' } }, xhr: true
     assert_response :success
 
     i.reload

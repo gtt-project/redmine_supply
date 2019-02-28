@@ -1,7 +1,7 @@
 require_relative '../test_helper'
 
 class UpdateStockTest < ActiveSupport::TestCase
-  self.use_transactional_fixtures = false
+  self.use_transactional_tests = false
 
   fixtures :projects
 
