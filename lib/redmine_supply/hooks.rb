@@ -6,8 +6,8 @@ module RedmineSupply
       issue = context[:issue]
       json = context[:json]
       attributes = json[:attributes] ||= {}
-      attributes[:supply_items] = IssueSupplyItemsPresenter.(issue.issue_supply_items)
-      attributes[:resource_items] = ResourceItemsPresenter.(issue.resource_items)
+      attributes[:supply_items] = IssueSupplyItemsPresenter.(issue.issue_supply_items).join("\r\n")
+      attributes[:resource_items] = ResourceItemsPresenter.(issue.resource_items).join("\r\n")
     end
   end
 end
