@@ -18,11 +18,11 @@ class HooksTest < ActiveSupport::TestCase
     json = { foo: 'bar' }
     RedmineSupply::Hooks.instance.redmine_gtt_print_issue_to_json(issue: @issue,
                                                                   json: json)
-    assert items = json[:attributes][:supply_items]
+    assert items = json[:attributes][:supply_items].split('\r\n')
     assert_equal 1, items.size
     assert_equal "#{@item.name} (1.0 pcs)", items.first
 
-    assert items = json[:attributes][:resource_items]
+    assert items = json[:attributes][:resource_items].split('\r\n')
     assert_equal 1, items.size
     assert_equal @resource.name, items.first
 
