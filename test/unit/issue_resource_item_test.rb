@@ -1,7 +1,7 @@
 require_relative '../test_helper'
 
 
-class IssueResourceItemsTest < ActiveSupport::TestCase
+class IssueResourceItemTest < ActiveSupport::TestCase
   fixtures :projects,
     :trackers,
     :projects_trackers,
