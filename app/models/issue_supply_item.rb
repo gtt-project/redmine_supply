@@ -9,23 +9,24 @@ class IssueSupplyItem < ActiveRecord::Base
     includes(:supply_item).order("#{SupplyItem.table_name}.name ASC")
   }
 
-  after_destroy ->(isi){
-    RedmineSupply::RecordIssueSupplyItemChange.(isi.issue,
-                                                isi.supply_item,
-                                                isi.quantity)
+  after_destroy ->{
+    RedmineSupply::RecordIssueSupplyItemChange.(issue,
+                                                supply_item,
+                                                quantity)
   }
 
-  after_create ->(isi){
-    RedmineSupply::RecordIssueSupplyItemChange.(isi.issue,
-                                                isi.supply_item,
-                                                -1 * isi.quantity)
+  after_create ->{
+    RedmineSupply::RecordIssueSupplyItemChange.(issue,
+                                                supply_item,
+                                                -1 * quantity)
   }
 
-  after_update ->(isi){
-    if isi.quantity_was != isi.quantity
-      RedmineSupply::RecordIssueSupplyItemChange.(isi.issue,
-                                                  isi.supply_item,
-                                                  isi.quantity_was - isi.quantity)
+  after_update ->{
+    if changes = saved_changes['quantity']
+      quantity_was, quantity = changes
+      RedmineSupply::RecordIssueSupplyItemChange.(issue,
+                                                  supply_item,
+                                                  quantity_was - quantity)
     end
   }
 
