@@ -7,9 +7,11 @@
 
   <%= hidden_field_tag :issue_id, issue.id, id: 'resource_item_issue_id' if issue %>
 
+  <% if categories.any? %>
   <p>
     <label for="category_id"><%= l :field_resource_category %>:</label>
-    <%= select_tag :category_id, options_from_collection_for_select(categories, :id, :name, category), onchange: "updateIssueResourceForm();" %></p>
+    <%= select_tag :category_id, options_from_collection_for_select(categories, :id, :name, category), onchange: "updateIssueResourceForm();", include_blank: true %></p>
+  <% end %>
 
   <div id="resource_item_search_fields">
 
@@ -18,7 +20,7 @@
       <%= text_field_tag 'resource_item_search', nil %>
     </p>
 
-    <%= javascript_tag "observeResourceItemSearchfield('#{ j autocomplete_project_resource_items_path(@project, issue_id: issue.try(:id)) }');" %>
+    <%= javascript_tag "observeResourceItemSearchfield('#{ j autocomplete_project_resource_items_path(@project, issue_id: issue.try(:id), type: @type) }');" %>
 
     <div id="resource_items_for_issue">
       <%= render partial: 'resource_items/resource_items_for_issue', locals: { resource_items: resource_items, total: @total } %>

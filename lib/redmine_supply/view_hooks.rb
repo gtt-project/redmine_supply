@@ -20,12 +20,17 @@ module RedmineSupply
             ).call, '<br />'.html_safe)
         end
 
-        if User.current.allowed_to?(:view_issue_resources, issue.project) &&
+        if User.current.allowed_to?(:view_issue_resources, issue.project) and
             issue.issue_resource_items.any?
 
-          rows.right l(:label_resource_item_plural),
-            safe_join(RedmineSupply::ResourceItemsPresenter.(issue.resource_items),
+          items_by_type = issue.resource_items_by_type
+          items_by_type.each do |type, items|
+
+            next if items.blank?
+            rows.right l(:"label_#{type}_resource_item_plural"),
+              safe_join(RedmineSupply::ResourceItemsPresenter.(items),
                       '<br />'.html_safe)
+          end
         end
 
       end

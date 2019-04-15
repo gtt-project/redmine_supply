@@ -3,7 +3,7 @@ module RedmineResourceManager
     def self.apply
       Project.class_eval do
         has_many :resource_categories
-        has_many :resource_items, through: :resource_categories
+        has_many :resource_items
       end
     end
 

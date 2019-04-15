@@ -22,7 +22,7 @@ class IssueResourceItemsTest < Redmine::IntegrationTest
     @project.enabled_modules.create! name: 'supply'
 
     @cat = @project.resource_categories.create! name: 'Car'
-    @item = @cat.resource_items.create! name: 'RCM 429'
+    @item = Asset.create! project: @project, category: @cat, name: 'RCM 429'
     @issue = @project.issues.first
 
   end
@@ -34,14 +34,14 @@ class IssueResourceItemsTest < Redmine::IntegrationTest
 
     get "/issues/#{@issue.id}"
     assert_response :success
-    assert_select 'div.label', text: 'Resources:', count: 0
+    assert_select 'div.label', text: 'Assets:', count: 0
     assert_select 'div.value', text: 'RCM 429', count: 0
 
     Role.find(1).add_permission! :view_issue_resources
 
     get "/issues/#{@issue.id}"
     assert_response :success
-    assert_select 'div.label', text: 'Resources:'
+    assert_select 'div.label', text: 'Assets:'
     assert_select 'div.value', text: 'RCM 429'
   end
 
@@ -50,34 +50,37 @@ class IssueResourceItemsTest < Redmine::IntegrationTest
 
     get '/projects/ecookbook/issues/new'
     assert_response :success
-    assert_select 'label', text: 'Resources', count: 0
+    assert_select 'label', text: 'Assets', count: 0
     assert_select '.add_resource_items a', text: 'Add', count: 0
 
     get '/issues/1/edit'
     assert_response :success
-    assert_select 'label', text: 'Resources', count: 0
+    assert_select 'label', text: 'Assets', count: 0
     assert_select '.add_resource_items a', text: 'Add', count: 0
 
     Role.find(1).add_permission! :manage_issue_resources
     Role.find(1).add_permission! :view_issue_resources
     get '/projects/ecookbook/issues/new'
     assert_response :success
-    assert_select 'label', text: 'Resources'
+    assert_select 'label', text: 'Assets'
     assert_select '.add_resource_items a', text: 'Add'
 
     get '/issues/1/edit'
     assert_response :success
-    assert_select 'label', text: 'Resources'
+    assert_select 'label', text: 'Assets'
     assert_select '.add_resource_items a', text: 'Add'
   end
 
   def test_issue_resource_items_editing
-    item2 = @cat.resource_items.create! name: 'ASL-JJ 262'
+    item2 = Asset.create! project: @project, category: @cat, name: 'ASL-JJ 262'
     Role.find(1).add_permission! :manage_issue_resources
     Role.find(1).add_permission! :view_issue_resources
     log_user 'jsmith', 'jsmith'
 
     get '/projects/ecookbook/issues/new'
+    assert_response :success
+
+    get '/projects/ecookbook/issue_resource_items/new', xhr: true, params: { type: 'Asset' }
     assert_response :success
 
     post '/projects/ecookbook/issues', params: {
@@ -97,12 +100,12 @@ class IssueResourceItemsTest < Redmine::IntegrationTest
 
     follow_redirect!
     assert_response :success
-    assert_select 'div.label', text: 'Resources:'
+    assert_select 'div.label', text: 'Assets:'
     assert_select 'div.value', text: /RCM 429/
 
     get "/issues/#{issue.id}/edit"
     assert_response :success
-    assert_select 'label', text: 'Resources'
+    assert_select 'label', text: 'Assets'
     assert_select 'p.issue_resource_item_wrap', text: /RCM 429/
 
 
@@ -123,7 +126,7 @@ class IssueResourceItemsTest < Redmine::IntegrationTest
 
     follow_redirect!
     assert_response :success
-    assert_select 'div.label', text: 'Resources:'
+    assert_select 'div.label', text: 'Assets:'
     assert_select 'div.value', text: /RCM 429/
     assert_select 'div.value', text: /ASL-JJ 262/
 
@@ -144,7 +147,7 @@ class IssueResourceItemsTest < Redmine::IntegrationTest
     follow_redirect!
 
     assert_response :success
-    assert_select 'div.label', text: 'Resources:'
+    assert_select 'div.label', text: 'Assets:'
     assert_select 'div.value', text: /RCM 429/
     assert_select 'div.value', text: /ASL-JJ 262/, count: 0
 
@@ -160,7 +163,7 @@ class IssueResourceItemsTest < Redmine::IntegrationTest
 
     follow_redirect!
     assert_response :success
-    assert_select 'label', text: 'Resources'
+    assert_select 'label', text: 'Assets'
     assert_select 'div.issue_resource_item_wrap', text: /RCM 429/, count: 0
     assert_select 'div.issue_resource_item_wrap', text: /ASL-JJ 262/, count: 0
 

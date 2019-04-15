@@ -1,0 +1,31 @@
+<div class="contextual">
+<% if User.current.allowed_to? :manage_resource_items, @project %>
+  <%= link_to l(:label_human_resource_item_new), new_project_human_resource_item_path(@project), class: 'icon icon-add' %>
+<% end %>
+</div>
+
+<h2><%= l :label_human_resource_item_plural %></h2>
+
+<% if @resource_items.any? %>
+  <table class="list resource_items">
+    <thead>
+      <tr>
+        <th><%= l :label_resource_item_category %></th>
+        <th><%= l :label_resource_item_name %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for i in @resource_items %>
+        <tr>
+          <td class="category"><%= i.category&.name %>
+          <td class="name"><%= link_to i.name, edit_project_human_resource_item_path(@project, i) %></td>
+          <td><%= delete_link project_human_resource_item_path(@project, i) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="nodata"><%= l :label_no_data %></p>
+<% end %>
+

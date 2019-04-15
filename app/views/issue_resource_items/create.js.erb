@@ -1,4 +1,4 @@
-var wrapper = $('#resource_item_list');
+var wrapper = $('#<%= @issue_resource_items.first.resource_item.class.name.underscore %>_resource_item_list');
 <% @issue_resource_items.each do |item| %>
   var i = $('#<%= j dom_id item.resource_item %>');
   if(i.size() == 0){

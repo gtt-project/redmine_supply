@@ -1,7 +1,8 @@
 module RedmineResourceManager
   class ResourceItemsQuery
 
-    def initialize(project:, query: nil, category_id: nil, issue_id: nil)
+    def initialize(project:, query: nil, category_id: nil, issue_id: nil, resource_class:)
+      @resource_class = resource_class
       @project = project
       @query = query.presence
       @category_id = category_id.presence
@@ -20,7 +21,7 @@ module RedmineResourceManager
     private
 
     def all
-      all = @project.resource_items
+      all = @resource_class.where(project_id: @project.id)
       all = all.where(category_id: @category_id) if @category_id
       all = all.like @query if @query
       if @issue_id

@@ -40,11 +40,13 @@ Redmine::Plugin.register :redmine_supply do
     }, require: :member
 
     permission :view_resource_items, {
-      resource_items: %i( index ),
+      asset_resource_items: %i( index ),
+      human_resource_items: %i( index ),
     }, require: :member, read: true
 
     permission :manage_resource_items, {
-      resource_items: %i( index new edit update create destroy ),
+      asset_resource_items: %i( index new edit update create destroy ),
+      human_resource_items: %i( index new edit update create destroy ),
     }, require: :member
 
 
@@ -59,17 +61,34 @@ Redmine::Plugin.register :redmine_supply do
   activity_provider :supply_item_journals, class_name: 'SupplyItemJournal'
 
   menu :project_menu,
-    :resource_items,
-    { controller: 'resource_items', action: 'index' },
-    caption: :label_resource_item_plural,
+    :human_resource_items,
+    { controller: 'human_resource_items', action: 'index' },
+    caption: :label_human_resource_item_plural,
     after: :issues,
     param: :project_id,
     permission: :view_resource_items
 
   menu :project_menu,
-    :new_resource_item,
-    { controller: 'resource_items', action: 'new' },
-    caption: :label_resource_item_new,
+    :new_human_resource_item,
+    { controller: 'human_resource_items', action: 'new' },
+    caption: :label_human_resource_item_new,
+    after: :new_version,
+    param: :project_id,
+    parent: :new_object,
+    permission: :manage_resource_items
+
+  menu :project_menu,
+    :asset_resource_items,
+    { controller: 'asset_resource_items', action: 'index' },
+    caption: :label_asset_resource_item_plural,
+    after: :issues,
+    param: :project_id,
+    permission: :view_resource_items
+
+  menu :project_menu,
+    :new_asset_resource_item,
+    { controller: 'asset_resource_items', action: 'new' },
+    caption: :label_asset_resource_item_new,
     after: :new_version,
     param: :project_id,
     parent: :new_object,

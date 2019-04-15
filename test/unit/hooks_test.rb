@@ -10,7 +10,7 @@ class HooksTest < ActiveSupport::TestCase
     @item = SupplyItem.generate! project: @project
     @isi = IssueSupplyItem.create! issue: @issue, supply_item: @item, quantity: 1
 
-    @resource = ResourceItem.generate! project: @project
+    @resource = Asset.generate! project: @project
     @iri = IssueResourceItem.create! issue: @issue, resource_item: @resource
   end
 

@@ -22,7 +22,7 @@ class IssueResourceItemTest < ActiveSupport::TestCase
     @project.enabled_modules.create! name: 'supply'
 
     @cat = @project.resource_categories.create! name: 'Car'
-    @item = @cat.resource_items.create! name: 'RCM 429'
+    @item = Asset.create! category: @cat, name: 'RCM 429'
     @issue = @project.issues.first
 
   end

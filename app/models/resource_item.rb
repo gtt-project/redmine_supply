@@ -1,8 +1,11 @@
 class ResourceItem < ActiveRecord::Base
+  belongs_to :project
   belongs_to :category, class_name: 'ResourceCategory'
+
   has_many :issue_resource_items
 
-  validates :category_id, presence: true
+  validates :project_id, presence: true
+  #validates :category_id, presence: true
   validates :name, presence: true,
                    uniqueness: { case_sensitive: false, scope: :category_id }
 

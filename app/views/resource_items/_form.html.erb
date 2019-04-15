@@ -2,7 +2,7 @@
 
 <div class="box tabular">
   <p><%= f.text_field :name, required: true, size: 25 %></p>
-  <p><%= f.select :category_id, @project.resource_categories.sorted.map{|c|[c.name, c.id]}, label: l(:field_resource_category), required: true %></p>
+  <p><%= f.select :category_id, @project.resource_categories.sorted.map{|c|[c.name, c.id]}, label: l(:field_resource_category), include_blank: true %></p>
 </div>
 
 

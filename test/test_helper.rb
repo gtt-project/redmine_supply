@@ -27,11 +27,27 @@ SupplyItem.class_eval do
   end
 end
 
-ResourceItem.class_eval do
-  def self.generate!(name: 'resource item', project:,
+Asset.class_eval do
+  def self.generate!(name: 'an asset', project:,
                      category: ResourceCategory.generate!(project: project))
     r = RedmineResourceManager::SaveResourceItem.(
-      { name: name, category_id: category.id }, project: project
+      { name: name, category_id: category.id },
+      project: project, resource_class: Asset
+    )
+    if r.item_saved?
+      r.item
+    else
+      puts r.item.inspect
+    end
+  end
+end
+
+Human.class_eval do
+  def self.generate!(name: 'a human', project:,
+                     category: ResourceCategory.generate!(project: project))
+    r = RedmineResourceManager::SaveResourceItem.(
+      { name: name, category_id: category.id },
+      project: project, resource_class: Human
     )
     if r.item_saved?
       r.item

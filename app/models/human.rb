@@ -1,0 +1,3 @@
+class Human < ResourceItem
+end
+

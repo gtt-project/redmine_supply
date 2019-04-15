@@ -7,11 +7,12 @@ class IssueResourceItemsController < ApplicationController
 
   def new
     @categories = @project.resource_categories.sorted
-    @category = @categories.first
     @issue = find_issue_if_present
+    @type = %w(Asset Human).detect{|t| t == params[:type]}
 
     query = RedmineResourceManager::ResourceItemsQuery.new(
-      project: @project, category_id: @category.id, issue_id: params[:issue_id]
+      project: @project, category_id: nil, issue_id: params[:issue_id],
+      resource_class: @type.constantize
     )
 
     @resource_items = query.scope

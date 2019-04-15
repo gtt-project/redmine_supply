@@ -4,12 +4,11 @@ class ResourceItemsController < ApplicationController
   before_action :find_project_by_project_id
   before_action :authorize
 
-  menu_item :resource_items
 
   def index
-    @resource_items = @project.resource_items
-      .joins(:category)
-      .order("#{ResourceCategory.table_name}.name ASC, #{ResourceItem.table_name} ASC")
+    @resource_items = resource_class.where(project_id: @project.id)
+      .includes(:category).references(:category)
+      .order("#{ResourceCategory.table_name}.name ASC, #{ResourceItem.table_name}.name ASC")
   end
 
   def edit
@@ -17,20 +16,22 @@ class ResourceItemsController < ApplicationController
   end
 
   def new
-    @resource_item = ResourceItem.new resource_item_params
+    @resource_item = resource_class.new resource_item_params
   end
 
   def create
     r = RedmineResourceManager::SaveResourceItem.(
-      resource_item_params, project: @project
+      resource_item_params, project: @project, resource_class: resource_class
     )
     if r.item_saved?
-      redirect_to params[:continue] ?
-        new_project_resource_item_path(
+      if params[:continue]
+        redirect_to new_project_resource_item_path(
           @project,
           resource_item: { category_id: r.item.category_id }
-        ) :
-        project_resource_items_path(@project)
+        )
+      else
+        redirect_to_index
+      end
     else
       @resource_item = r.item
       render 'new'
@@ -43,7 +44,7 @@ class ResourceItemsController < ApplicationController
       resource_item_params, item: @resource_item, project: @project
     )
     if r.item_saved?
-      redirect_to project_resource_items_path @project
+      redirect_to_index
     else
       render 'edit'
     end
@@ -51,29 +52,38 @@ class ResourceItemsController < ApplicationController
 
   def destroy
     find_resource_item.destroy
-    redirect_to project_resource_items_path @project
+    redirect_to_index
   end
 
   def autocomplete
     query = RedmineResourceManager::ResourceItemsQuery.new(
+      resource_class: resource_class,
       project: @project,
       category_id: params[:category_id],
       query: params[:q],
-      issue_id: params[:issue_id]
+      issue_id: params[:issue_id],
     )
     @resource_items = query.scope
     @total = query.total
-    render layout: false
+    render 'resource_items/autocomplete', layout: false
   end
 
   private
 
+  def resource_class
+    if type = %w(Asset Human).detect{|t|t == params[:type]}
+      type.constantize
+    end
+  end
+
   def resource_item_params
-    params[:resource_item].permit :name, :category_id if params[:resource_item]
+    if parameters = params[:human] || params[:asset]
+      parameters.permit :name, :category_id
+    end
   end
 
   def find_resource_item
-    @project.resource_items.find params[:id]
+    resource_class.where(project_id: @project.id).find params[:id]
   end
 
 end
