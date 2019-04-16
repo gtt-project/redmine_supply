@@ -1,4 +1,6 @@
 <tr>
   <td><%= link_to resource_category.name, edit_project_resource_category_path(resource_category.project, resource_category) %></td>
+  <td class="tick"><%= checked_image resource_category.for_assets %></td>
+  <td class="tick"><%= checked_image resource_category.for_humans %></td>
   <td><%= delete_link(project_resource_category_path(resource_category.project, resource_category)) %>
 </tr>

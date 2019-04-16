@@ -48,7 +48,7 @@ class ResourceCategoriesController < ApplicationController
   private
 
   def resource_category_params
-    params[:resource_category].permit :name
+    params[:resource_category].permit :name, :for_humans, :for_assets
   end
 
   def find_resource_category

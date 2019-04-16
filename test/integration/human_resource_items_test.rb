@@ -13,7 +13,7 @@ class HumanResourceItemsTest < Redmine::IntegrationTest
     @project.enabled_modules.create! name: 'issue_tracking'
     @project.enabled_modules.create! name: 'supply'
 
-    @cat = @project.resource_categories.create! name: 'Car'
+    @cat = ResourceCategory.generate! project: @project
   end
 
   def test_human_resource_items_require_permission

@@ -1,7 +1,7 @@
 <%= title [l(:label_asset_resource_item_plural), project_asset_resource_items_path(@project)], l(:label_asset_resource_item_new) %>
 
 <%= labelled_form_for @resource_item, url: project_asset_resource_items_path(@project) do |f| %>
-  <%= render partial: 'resource_items/form', locals: { f: f } %>
+  <%= render partial: 'resource_items/form', locals: { f: f, categories: @project.resource_categories.for_assets } %>
   <p>
     <%= submit_tag l :button_create %>
     <%= submit_tag l(:button_create_and_continue), name: 'continue' %>

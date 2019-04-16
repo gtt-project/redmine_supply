@@ -1,7 +1,7 @@
 <%= title [l(:label_human_resource_item_plural), project_human_resource_items_path(@project)], @resource_item.name %>
 
 <%= labelled_form_for @resource_item, url: project_human_resource_item_path(@project, @resource_item), method: :patch do |f| %>
-  <%= render partial: 'resource_items/form', locals: { f: f } %>
+  <%= render partial: 'resource_items/form', locals: { f: f, categories: @project.resource_categories.for_humans } %>
   <p>
     <%= submit_tag l :button_save %>
   </p>

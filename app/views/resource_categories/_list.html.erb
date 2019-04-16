@@ -1,8 +1,14 @@
 <% if resource_categories.any? %>
   <table class="list resource_categories">
+    <colgroup>
+      <col width="60%" />
+      <col span="3" />
+    </colgroup>
     <thead>
       <tr>
         <th><%= l :label_resource_category_name %></th>
+        <th><%= l :label_resource_category_for_assets %></th>
+        <th><%= l :label_resource_category_for_humans %></th>
         <th></th>
       </tr>
     </thead>

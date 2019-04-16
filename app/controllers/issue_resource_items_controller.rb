@@ -6,9 +6,10 @@ class IssueResourceItemsController < ApplicationController
   helper :resource_items
 
   def new
-    @categories = @project.resource_categories.sorted
     @issue = find_issue_if_present
     @type = %w(Asset Human).detect{|t| t == params[:type]}
+    @categories = @project.resource_categories.sorted
+    @categories = @type == 'Asset' ? @categories.for_assets : @categories.for_humans
 
     query = RedmineResourceManager::ResourceItemsQuery.new(
       project: @project, category_id: nil, issue_id: params[:issue_id],

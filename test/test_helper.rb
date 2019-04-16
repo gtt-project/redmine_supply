@@ -60,7 +60,7 @@ end
 ResourceCategory.class_eval do
   def self.generate!(name: "resource category", project:)
     r = RedmineResourceManager::SaveResourceCategory.(
-      { name: name }, project: project
+      { name: name, for_assets: true }, project: project
     )
     if r.category_saved?
       r.category

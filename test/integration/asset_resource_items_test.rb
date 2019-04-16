@@ -13,7 +13,7 @@ class AssetResourceItemsTest < Redmine::IntegrationTest
     @project.enabled_modules.create! name: 'issue_tracking'
     @project.enabled_modules.create! name: 'supply'
 
-    @cat = @project.resource_categories.create! name: 'Car'
+    @cat = ResourceCategory.generate! project: @project
   end
 
   def test_asset_resource_items_require_permission

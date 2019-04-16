@@ -10,6 +10,8 @@ class ResourceItem < ActiveRecord::Base
                    uniqueness: { case_sensitive: false, scope: :category_id }
 
   scope :sorted, ->{ order name: :asc}
+  scope :humans, ->{ where type: 'Human' }
+  scope :assets, ->{ where type: 'Asset' }
 
   scope :like, ->(q){
     if q.present?

@@ -20,7 +20,7 @@ class ResourceCategoriesTest < Redmine::IntegrationTest
     get '/projects/ecookbook/settings'
     assert_response :success
     assert_select 'li a', text: 'Resource categories', count: 0
-    post '/projects/ecookbook/resource_categories', params: { resource_category: { name: 'new' }}
+    post '/projects/ecookbook/resource_categories', params: { resource_category: { name: 'new', for_assets: '1' }}
     assert_response 403
   end
 
@@ -39,7 +39,7 @@ class ResourceCategoriesTest < Redmine::IntegrationTest
     assert_response :success
 
     assert_difference 'ResourceCategory.count' do
-      post '/projects/ecookbook/resource_categories', params: { resource_category: { name: 'Car'}}
+      post '/projects/ecookbook/resource_categories', params: { resource_category: { name: 'Car', for_assets: '1' }}
     end
     assert_redirected_to '/projects/ecookbook/settings/resource_categories'
 

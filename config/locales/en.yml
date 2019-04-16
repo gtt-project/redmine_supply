@@ -1,4 +1,16 @@
 en:
+  activerecord:
+    errors:
+      models:
+        resource_category:
+          attributes:
+            base:
+              select_category_usage: Please choose what this category should be used for.
+            for_assets:
+              in_use: has to be selected since this category is currently being used for assets.
+            for_humans:
+              in_use: has to be selected since this category is currently being used for people.
+
   field_resource_category: Category
   field_supply_item_description: Description
   field_supply_item_unit: Unit
@@ -7,6 +19,8 @@ en:
   field_supply_item_stock_change_comment: Comment
   field_issue_supply_item_names: Supply Items
   label_add_issue_resource_items: Add
+  label_resource_category_for_assets: For assets
+  label_resource_category_for_humans: For people
   label_resource_category_name: Name
   label_resource_category_new: New resource category
   label_resource_category_plural: Resource categories
