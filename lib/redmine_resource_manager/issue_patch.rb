@@ -15,26 +15,33 @@ module RedmineResourceManager
             if: ->(issue, user){ user.allowed_to?(:manage_issue_resources,
                                                   issue.project) }
 
-          def issue_human_resource_items
-            issue_resource_items.includes(:resource_item)
-              .where(resource_items: { type: 'Human'})
-          end
-
-          def issue_asset_resource_items
-            issue_resource_items.includes(:resource_item)
-              .where(resource_items: { type: 'Asset'})
-          end
-
-          def resource_items_by_type
-            {
-              'asset' => resource_items.where(type: 'Asset'),
-              'human' => resource_items.where(type: 'Human')
-            }
-          end
-
         end
-
       end
+    end
+
+
+    def issue_human_resource_item_names
+      IssueResourceItemsPresenter.new(issue_human_resource_items).to_s
+    end
+    def issue_asset_resource_item_names
+      IssueResourceItemsPresenter.new(issue_asset_resource_items).to_s
+    end
+
+    def issue_human_resource_items
+      issue_resource_items.includes(:resource_item)
+        .where(resource_items: { type: 'Human'})
+    end
+
+    def issue_asset_resource_items
+      issue_resource_items.includes(:resource_item)
+        .where(resource_items: { type: 'Asset'})
+    end
+
+    def resource_items_by_type
+      {
+        'asset' => resource_items.where(type: 'Asset'),
+        'human' => resource_items.where(type: 'Human')
+      }
     end
 
   end

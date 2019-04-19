@@ -17,6 +17,8 @@ en:
   field_supply_item_stock: Stock
   field_supply_item_stock_change: Stock change
   field_supply_item_stock_change_comment: Comment
+  field_issue_asset_resource_item_names: Assets
+  field_issue_human_resource_item_names: People
   field_issue_supply_item_names: Supply Items
   label_add_issue_resource_items: Add
   label_resource_category_for_assets: For assets

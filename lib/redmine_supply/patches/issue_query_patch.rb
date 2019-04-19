@@ -15,11 +15,16 @@ module RedmineSupply
           @available_columns << QueryColumn.new(:issue_supply_item_names)
         end
 
+        if User.current.allowed_to?(:view_issue_resources, project, global: true)
+          @available_columns << QueryColumn.new(:issue_human_resource_item_names)
+          @available_columns << QueryColumn.new(:issue_asset_resource_item_names)
+        end
+
         @available_columns
       end
 
       def add_supply_items(a)
-        a | [:issue_supply_items]
+        a | %i(issue_supply_items issue_resource_items)
       end
 
       def issues(options={})

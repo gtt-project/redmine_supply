@@ -9,10 +9,6 @@ module RedmineSupply
 
             has_many :issue_supply_items
 
-            def issue_supply_item_names
-              IssueSupplyItemsPresenter.new(issue_supply_items).to_s
-            end
-
             accepts_nested_attributes_for :issue_supply_items
 
             safe_attributes 'issue_supply_items_attributes',
@@ -22,6 +18,10 @@ module RedmineSupply
           end
 
         end
+      end
+
+      def issue_supply_item_names
+        IssueSupplyItemsPresenter.new(issue_supply_items).to_s
       end
 
       def issue_supply_items_attributes=(attributes = [])
