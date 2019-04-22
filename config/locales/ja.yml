@@ -1,20 +1,37 @@
 ja:
+  activerecord:
+    errors:
+      models:
+        resource_category:
+          attributes:
+            base:
+              select_category_usage: このカテゴリーを何に利用するか選択してください。
+            for_assets:
+              in_use: このカテゴリーは現在、資産に利用されているので選択が必要です。
+            for_humans:
+              in_use: このカテゴリーは現在、人員に利用されているので選択が必要です。
+
   field_resource_category: カテゴリー
   field_supply_item_description: 説明
   field_supply_item_unit: 単位
   field_supply_item_stock: 在庫数
   field_supply_item_stock_change: 在庫数変更
   field_supply_item_stock_change_comment: コメント
+  field_issue_asset_resource_item_names: 資産
+  field_issue_human_resource_item_names: 人員
   field_issue_supply_item_names: 資材
-  label_add_issue_resource_items: リソースを追加
-  label_add_resource_items: 追加
+  label_add_issue_resource_items: 追加
+  label_resource_category_for_assets: 資産
+  label_resource_category_for_humans: 人員
   label_resource_category_name: 名前
   label_resource_category_new: 新しいリソースのカテゴリ
   label_resource_category_plural: リソースのカテゴリ
   label_resource_item_category: カテゴリ
   label_resource_item_name: 名前
-  label_resource_item_new: 新しいリソース
-  label_resource_item_plural: リソース
+  label_asset_resource_item_new: 新しい資産
+  label_human_resource_item_new: 新しい人員
+  label_asset_resource_item_plural: 資産
+  label_human_resource_item_plural: 人員
   label_resource_item_search: リソースを検索
   label_resource_item_more_items: "%{total} 件中 %{shown} 件を表示"
   label_add_issue_supply_items: 資材を追加
@@ -42,4 +59,5 @@ ja:
   text_supply_item_created: "資材 %{name} が作成されました (%{stock})"
   text_supply_item_updated: "資材 %{name} が変更されました (%{change})"
   text_supply_item_nochange: 変更なし
-  text_issue_supply_item_changed: "チケット #%{id}: %{name} が変更されました (%{change})"
+  text_issue_supply_item_changed:
+    "チケット #%{id}: %{name} が変更されました (%{change})"
