@@ -1,6 +1,12 @@
 
 /* tables */
 
+table.list.issues td.issue_supply_item_names,
+table.list.issues td.issue_human_resource_item_names,
+table.list.issues td.issue_asset_resource_item_names {
+  white-space: normal;
+}
+
 table.list.supply_items tbody td.name,
 table.list.supply_items tbody td.description,
 table.list.supply_item_journals tbody td.name,
