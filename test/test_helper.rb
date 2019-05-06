@@ -44,7 +44,7 @@ end
 
 Human.class_eval do
   def self.generate!(name: 'a human', project:,
-                     category: ResourceCategory.generate!(project: project))
+                     category: ResourceCategory.generate!(project: project, for_assets: false))
     r = RedmineResourceManager::SaveResourceItem.(
       { name: name, category_id: category.id },
       project: project, resource_class: Human
@@ -58,9 +58,12 @@ Human.class_eval do
 end
 
 ResourceCategory.class_eval do
-  def self.generate!(name: "resource category", project:)
+  def self.generate!(name: "", project:, for_assets: true)
+    if name.empty?
+      name = for_assets ? "asset resource category" : "human resource_category"
+    end
     r = RedmineResourceManager::SaveResourceCategory.(
-      { name: name, for_assets: true }, project: project
+      { name: name, for_assets: for_assets, for_humans: !for_assets }, project: project
     )
     if r.category_saved?
       r.category

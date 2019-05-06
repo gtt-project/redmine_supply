@@ -10,8 +10,11 @@ class HooksTest < ActiveSupport::TestCase
     @item = SupplyItem.generate! project: @project
     @isi = IssueSupplyItem.create! issue: @issue, supply_item: @item, quantity: 1
 
-    @resource = Asset.generate! project: @project
-    @iri = IssueResourceItem.create! issue: @issue, resource_item: @resource
+    @asset_resource = Asset.generate! project: @project
+    @iari = IssueResourceItem.create! issue: @issue, resource_item: @asset_resource
+
+    @human_resource = Human.generate! project: @project
+    @ihri = IssueResourceItem.create! issue: @issue, resource_item: @human_resource
   end
 
   test 'should add supply and resource items to json' do
@@ -22,9 +25,13 @@ class HooksTest < ActiveSupport::TestCase
     assert_equal 1, items.size
     assert_equal "#{@item.name} (1.0 pcs)", items.first
 
-    assert items = json[:attributes][:resource_items].split('\r\n')
+    assert items = json[:attributes][:asset_resource_items].split('\r\n')
     assert_equal 1, items.size
-    assert_equal @resource.name, items.first
+    assert_equal @asset_resource.name, items.first
+
+    assert items = json[:attributes][:human_resource_items].split('\r\n')
+    assert_equal 1, items.size
+    assert_equal @human_resource.name, items.first
 
   end
 end
