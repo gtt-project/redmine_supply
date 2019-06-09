@@ -22,6 +22,24 @@ class IssueSupplyItemChangeTest < ActiveSupport::TestCase
   teardown do
   end
 
+  test "should delete changes when issue is deleted" do
+    r = RedmineSupply::SaveSupplyItem.(
+      {name: 'new item', stock: 5}, project: @project
+    )
+    assert i = r.supply_item
+
+    assert_difference 'IssueSupplyItemChange.count' do
+      IssueSupplyItem.create! issue: @issue, supply_item: i, quantity: 1.5
+    end
+
+    assert_difference "IssueSupplyItemChange.count", -1 do
+      assert_difference "IssueSupplyItem.count", -1 do
+        @issue.destroy
+      end
+    end
+  end
+
+
   test 'should record stock change when saved or destroyed' do
     r = RedmineSupply::SaveSupplyItem.(
       {name: 'new item', stock: 5}, project: @project

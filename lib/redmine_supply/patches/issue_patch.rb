@@ -7,7 +7,8 @@ module RedmineSupply
 
           Issue.class_eval do
 
-            has_many :issue_supply_items
+            has_many :issue_supply_items, dependent: :destroy
+            after_destroy :delete_supply_item_journals
 
             accepts_nested_attributes_for :issue_supply_items
 
@@ -50,6 +51,11 @@ module RedmineSupply
 
         super attributes
       end
+
+      def delete_supply_item_journals
+        SupplyItemJournal.where(issue_id: id).delete_all
+      end
+      private :delete_supply_item_journals
 
     end
   end
