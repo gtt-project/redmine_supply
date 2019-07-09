@@ -1,6 +1,8 @@
 class AssetResourceItemsController < ResourceItemsController
   menu_item :asset_resource_items
 
+  private
+
   def resource_class
     Asset
   end

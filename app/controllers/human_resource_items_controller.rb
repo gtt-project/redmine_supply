@@ -1,6 +1,8 @@
 class HumanResourceItemsController < ResourceItemsController
   menu_item :human_resource_items
 
+  private
+
   def resource_class
     Human
   end

@@ -1,3 +1,4 @@
+<% categories_present = ResourceCategory.for_humans.where(project: @project).any? %>
 <div class="contextual">
 <% if User.current.allowed_to? :manage_resource_items, @project %>
   <%= link_to l(:label_human_resource_item_new), new_project_human_resource_item_path(@project), class: 'icon icon-add' %>
@@ -10,7 +11,9 @@
   <table class="list resource_items">
     <thead>
       <tr>
+        <% if categories_present %>
         <th><%= l :label_resource_item_category %></th>
+        <% end %>
         <th><%= l :label_resource_item_name %></th>
         <th></th>
       </tr>
@@ -18,7 +21,9 @@
     <tbody>
       <% for i in @resource_items %>
         <tr>
+          <% if categories_present %>
           <td class="category"><%= i.category&.name %>
+          <% end %>
           <td class="name"><%= link_to i.name, edit_project_human_resource_item_path(@project, i) %></td>
           <td><%= delete_link project_human_resource_item_path(@project, i) %></td>
         </tr>
