@@ -33,6 +33,9 @@ function observeResourceItemSearchfield(url) {
     var timer = setInterval(check, 300);
     $this.bind('keyup click mousemove', reset);
   });
+  $(document).ajaxComplete(function(){
+    $('div.ui-dialog')[0].scrollIntoView()
+  })
 }
 
 // issue resource item deletion
