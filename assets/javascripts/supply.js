@@ -33,9 +33,6 @@ function observeResourceItemSearchfield(url) {
     var timer = setInterval(check, 300);
     $this.bind('keyup click mousemove', reset);
   });
-  $(document).ajaxComplete(function(){
-    $('div.ui-dialog')[0].scrollIntoView()
-  })
 }
 
 // issue resource item deletion
@@ -59,5 +56,11 @@ $(document).on('click', '.issue_supply_item_wrap a.icon-del', function(e){
   wrapper.hide();
   return false;
 });
+
+$(document).ready(function(){
+  $(document).ajaxComplete(function(){
+    $('div.ui-dialog')[0].scrollIntoView()
+  })
+})
 
 
