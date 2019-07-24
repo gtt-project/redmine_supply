@@ -58,9 +58,11 @@ $(document).on('click', '.issue_supply_item_wrap a.icon-del', function(e){
 });
 
 $(document).ready(function(){
-  $(document).ajaxComplete(function(){
-    $('div.ui-dialog')[0].scrollIntoView()
-  })
+  if($('div.ui-dialog')[0]){
+    $(document).ajaxComplete(function(){
+      $('div.ui-dialog')[0].scrollIntoView()
+    })
+  }
 })
 
 
