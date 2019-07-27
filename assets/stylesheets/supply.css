@@ -45,6 +45,9 @@ label.supply-item {
 #supply_items_for_issue p {
   padding-left: 250px;
 }
+#supply_items_for_issue input[type="number"] {
+  width: 6.5em;
+}
 
 /* Supply item stock change modal */
 
