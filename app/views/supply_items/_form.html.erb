@@ -3,7 +3,7 @@
 <div class="box tabular">
   <p><%= f.text_field :name, required: true, size: 25 %></p>
   <% if f.object.new_record? %>
-    <p><%= f.text_field :stock, required: true, size: 25, label: l(:field_supply_item_stock) %></p>
+    <p><%= f.number_field :stock, required: true, step: 0.1, size: 25, label: l(:field_supply_item_stock) %></p>
   <% else %>
     <p><%= f.label :stock %><span><%= @supply_item.stock %></span></p>
   <% end %>
