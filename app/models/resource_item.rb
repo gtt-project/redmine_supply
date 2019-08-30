@@ -7,7 +7,10 @@ class ResourceItem < ActiveRecord::Base
   validates :project_id, presence: true
   #validates :category_id, presence: true
   validates :name, presence: true,
-                   uniqueness: { case_sensitive: false, scope: :category_id }
+                   uniqueness: { case_sensitive: false, scope: [:project_id, :category_id] }
+
+  validates :start_date, :date => true
+  validates :end_date, :date => true
 
   scope :sorted, ->{ order name: :asc}
   scope :humans, ->{ where type: 'Human' }

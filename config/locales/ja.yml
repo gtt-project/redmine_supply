@@ -61,3 +61,5 @@ ja:
   text_supply_item_nochange: 変更なし
   text_issue_supply_item_changed:
     "チケット #%{id}: %{name} が変更されました (%{change})"
+  label_resource_item_start_date: 開始日
+  label_resource_item_end_date: 終了日

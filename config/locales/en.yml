@@ -61,3 +61,5 @@ en:
   text_supply_item_nochange: no change
   text_issue_supply_item_changed:
     "Issue #%{id}: %{name} was changed (%{change})"
+  label_resource_item_start_date: Start date
+  label_resource_item_end_date: End date
