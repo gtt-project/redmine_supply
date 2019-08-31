@@ -22,6 +22,8 @@ module RedmineResourceManager
       end
       @item.project = @project
       @item.name = @params[:name]
+      @item.start_date = @params[:start_date]
+      @item.end_date = @params[:end_date]
 
       return Result.new item_saved: @item.save,
                         item: @item
