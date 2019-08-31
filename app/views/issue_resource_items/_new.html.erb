@@ -23,7 +23,7 @@
     <%= javascript_tag "observeResourceItemSearchfield('#{ j autocomplete_project_resource_items_path(@project, issue_id: issue.try(:id), type: @type) }');" %>
 
     <div id="resource_items_for_issue">
-      <%= render partial: 'resource_items/resource_items_for_issue', locals: { resource_items: resource_items, total: @total } %>
+      <%= render partial: 'resource_items/resource_items_for_issue', locals: { resource_items: resource_items.filter_by_date, total: @total } %>
     </div>
 
   </div>
