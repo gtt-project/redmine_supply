@@ -13,7 +13,8 @@ class IssueResourceItemsController < ApplicationController
 
     query = RedmineResourceManager::ResourceItemsQuery.new(
       project: @project, category_id: nil, issue_id: params[:issue_id],
-      resource_class: @type.constantize
+      resource_class: @type.constantize,
+      filter_by_date: true
     )
 
     @resource_items = query.scope

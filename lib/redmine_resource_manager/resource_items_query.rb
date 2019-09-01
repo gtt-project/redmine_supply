@@ -1,12 +1,13 @@
 module RedmineResourceManager
   class ResourceItemsQuery
 
-    def initialize(project:, query: nil, category_id: nil, issue_id: nil, resource_class:)
+    def initialize(project:, query: nil, category_id: nil, issue_id: nil, resource_class:, filter_by_date: false)
       @resource_class = resource_class
       @project = project
       @query = query.presence
       @category_id = category_id.presence
       @issue_id = issue_id.presence
+      @filter_by_date = filter_by_date
     end
 
     def scope
@@ -23,6 +24,7 @@ module RedmineResourceManager
     def all
       all = @resource_class.where(project_id: @project.id)
       all = all.where(category_id: @category_id) if @category_id
+      all = all.filter_by_date if @filter_by_date
       all = all.like @query if @query
       if @issue_id
         issue = @project.issues.visible.find @issue_id

@@ -15,7 +15,9 @@ class ResourceItem < ActiveRecord::Base
   scope :sorted, ->{ order name: :asc}
   scope :humans, ->{ where type: 'Human' }
   scope :assets, ->{ where type: 'Asset' }
-  scope :filter_by_date, -> { where("start_date < ? AND  ? < end_date", Date.today, Date.today) }
+  scope :filter_by_date, ->(date = Date.today){
+    where("(start_date is NULL or start_date <= :date) AND (end_date is NULL or :date <= end_date)", date: date)
+  }
 
   scope :like, ->(q){
     if q.present?
