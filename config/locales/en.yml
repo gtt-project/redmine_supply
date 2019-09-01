@@ -63,3 +63,5 @@ en:
     "Issue #%{id}: %{name} was changed (%{change})"
   label_resource_item_start_date: Start date
   label_resource_item_end_date: End date
+  field_resource_item_start_date: Start date
+  field_resource_item_end_date: End date

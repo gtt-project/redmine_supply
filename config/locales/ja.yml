@@ -63,3 +63,5 @@ ja:
     "チケット #%{id}: %{name} が変更されました (%{change})"
   label_resource_item_start_date: 開始日
   label_resource_item_end_date: 終了日
+  field_resource_item_start_date: 開始日
+  field_resource_item_end_date: 終了日
