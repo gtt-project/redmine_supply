@@ -44,5 +44,23 @@ module RedmineSupply
       }
       attributes[:human_resource_items] = human_resource_items_value
     end
+
+    def redmine_gtt_print_issues_to_json(context)
+      issues = context[:issues]
+      json = context[:json]
+      attributes = json[:attributes] ||= {}
+      table = attributes[:datasource][0][:table]
+
+      table[:columns].push(
+        "supply_items", "asset_resource_items", "human_resource_items")
+      issues.each_with_index{|issue, idx|
+        items_by_type = issue.resource_items_by_type
+        table[:data][idx].push(
+          IssueSupplyItemsPresenter.(issue.issue_supply_items).join(", "),
+          ResourceItemsPresenter.(items_by_type['asset']).join(", "),
+          ResourceItemsPresenter.(items_by_type['human']).join(", ")
+        )
+      }
+    end
   end
 end
