@@ -1,11 +1,17 @@
 module RedmineResourceManager
   class IssueResourceItemsPresenter < RedmineSupply::Presenter
-    def initialize(scope)
-      @scope = scope.sorted
+    def initialize(obj)
+      if obj.instance_of?(Array)
+        @scope = nil
+        @issue_resource_items = obj
+      else
+        @scope = obj.sorted
+        @issue_resource_items = @scope.to_a
+      end
     end
 
     def call
-      @scope.to_a.map{|ri| issue_resource_item_tag ri}
+      @issue_resource_items.map{|ri| issue_resource_item_tag ri}
     end
 
     def to_s

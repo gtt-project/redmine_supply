@@ -22,7 +22,12 @@ module RedmineSupply
       end
 
       def issue_supply_item_names
-        IssueSupplyItemsPresenter.new(issue_supply_items).to_s
+        cached_items = instance_variable_get("@issue_supply_items")
+        if !cached_items.nil?
+          IssueSupplyItemsPresenter.new(cached_items).to_s
+        else
+          IssueSupplyItemsPresenter.new(issue_supply_items).to_s
+        end
       end
 
       def issue_supply_items_attributes=(attributes = [])
@@ -62,7 +67,10 @@ module RedmineSupply
         def load_issue_supply_items(issues, user=User.current)
           if issues.any?
             issue_ids = issues.map(&:id)
-            _issue_supply_items = IssueSupplyItem.where(:issue_id => issue_ids)
+            _issue_supply_items = IssueSupplyItem.includes(supply_item: [:custom_values]).
+                                    where(:issue_id => issue_ids).
+                                    order(:issue_id).
+                                    order("#{SupplyItem.table_name}.name ASC").to_a
             issues.each do |issue|
               issue.instance_variable_set "@issue_supply_items", _issue_supply_items.select {|s| s.issue_id == issue.id}
             end
@@ -72,7 +80,9 @@ module RedmineSupply
         def load_issue_human_resource_items(issues, user=User.current)
           if issues.any?
             issue_ids = issues.map(&:id)
-            _issue_human_resource_items = IssueResourceItem.where(resource_item_id: ResourceItem.humans.ids).where(:issue_id => issue_ids)
+            _issue_human_resource_items = IssueResourceItem.includes(:resource_item).
+                                            where(resource_items: {type: "Human"}).
+                                            where(:issue_id => issue_ids).to_a
             issues.each do |issue|
               issue.instance_variable_set "@issue_human_resource_items", _issue_human_resource_items.select {|h| h.issue_id == issue.id}
             end
@@ -82,7 +92,9 @@ module RedmineSupply
         def load_issue_asset_resource_items(issues, user=User.current)
           if issues.any?
             issue_ids = issues.map(&:id)
-            _issue_asset_resource_items = IssueResourceItem.where(resource_item_id: ResourceItem.assets.ids).where(:issue_id => issue_ids)
+            _issue_asset_resource_items = IssueResourceItem.includes(:resource_item).
+                                            where(resource_items: {type: "Asset"}).
+                                            where(:issue_id => issue_ids).to_a
             issues.each do |issue|
               issue.instance_variable_set "@issue_asset_resource_items", _issue_asset_resource_items.select {|a| a.issue_id == issue.id}
             end
