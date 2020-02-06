@@ -22,9 +22,7 @@ module RedmineSupply
 
     def issue_supply_item_tag(issue_supply_item)
       item = issue_supply_item.supply_item
-      # TODO: improve prealod cache logic
-      unit_name = @scope.nil? ? item.custom_values.first.value : item.unit_name
-      "#{h item.name} (#{h issue_supply_item.quantity} #{h unit_name})"
+      "#{h item.name} (#{h issue_supply_item.quantity} #{h item.unit_name})"
     end
   end
 end

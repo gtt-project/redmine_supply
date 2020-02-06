@@ -25,6 +25,7 @@ module RedmineSupply
         cached_items = instance_variable_get("@issue_supply_items")
         if !cached_items.nil?
           IssueSupplyItemsPresenter.new(cached_items).to_s
+          #instance_variable_set("@issue_supply_items", nil)
         else
           IssueSupplyItemsPresenter.new(issue_supply_items).to_s
         end
@@ -72,7 +73,30 @@ module RedmineSupply
                                     order(:issue_id).
                                     order("#{SupplyItem.table_name}.name ASC").to_a
             issues.each do |issue|
-              issue.instance_variable_set "@issue_supply_items", _issue_supply_items.select {|s| s.issue_id == issue.id}
+              issue.instance_variable_set "@issue_supply_items",
+                                          _issue_supply_items.select {|s| s.issue_id == issue.id}.
+                                          map{|isi|
+                                            IssueSupplyItem.new(
+                                              id: isi.id,
+                                              issue: issue,
+                                              supply_item: SupplyItem.new(
+                                                              id: isi.supply_item.id,
+                                                              project: issue.project,
+                                                              name: isi.supply_item.name,
+                                                              description: isi.supply_item.description,
+                                                              unit: isi.supply_item.unit,
+                                                              stock: isi.supply_item.stock,
+                                                              custom_values: [CustomValue.new(
+                                                                id: isi.supply_item.custom_values.first.id,
+                                                                customized_type: "SupplyItem",
+                                                                customized_id: isi.supply_item.custom_values.first.customized_id,
+                                                                custom_field_id: isi.supply_item.custom_values.first.custom_field_id,
+                                                                value: isi.supply_item.custom_values.first.value
+                                                              )]
+                                                            ),
+                                              quantity: isi.quantity
+                                            )
+                                          }.compact
             end
           end
         end
@@ -84,7 +108,19 @@ module RedmineSupply
                                             where(resource_items: {type: "Human"}).
                                             where(:issue_id => issue_ids).to_a
             issues.each do |issue|
-              issue.instance_variable_set "@issue_human_resource_items", _issue_human_resource_items.select {|h| h.issue_id == issue.id}
+              issue.instance_variable_set "@issue_human_resource_items",
+                                          _issue_human_resource_items.select {|h| h.issue_id == issue.id}.
+                                          map{|iri|
+                                              IssueResourceItem.new(
+                                                issue: issue,
+                                                resource_item: Human.new(
+                                                                  id: iri.resource_item.id,
+                                                                  category_id: iri.resource_item.category_id,
+                                                                  name: iri.resource_item.name,
+                                                                  project: issue.project
+                                                                )
+                                              )
+                                          }.compact
             end
           end
         end
@@ -96,7 +132,14 @@ module RedmineSupply
                                             where(resource_items: {type: "Asset"}).
                                             where(:issue_id => issue_ids).to_a
             issues.each do |issue|
-              issue.instance_variable_set "@issue_asset_resource_items", _issue_asset_resource_items.select {|a| a.issue_id == issue.id}
+              issue.instance_variable_set "@issue_asset_resource_items",
+                                          _issue_asset_resource_items.select {|a| a.issue_id == issue.id}.
+                                          map{|iri|
+                                            IssueResourceItem.new(
+                                              issue: issue,
+                                              resource_item: Asset.new(name: iri.resource_item.name)
+                                            )
+                                        }.compact
             end
           end
         end
