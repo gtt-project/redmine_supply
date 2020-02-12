@@ -21,19 +21,22 @@ module RedmineResourceManager
 
 
     def issue_human_resource_item_names
-      cached_items = instance_variable_get("@issue_human_resource_items")
+      cached_items = instance_variable_get("@issue_human_resource_cached_items")
       if !cached_items.nil?
-        IssueResourceItemsPresenter.new(cached_items).to_s
-        #instance_variable_set("@issue_human_resource_items", nil)
+        names = IssueResourceItemsPresenter.new(cached_items).to_s
+        instance_variable_set("@issue_human_resource_cached_items", nil)
+        names
       else
         IssueResourceItemsPresenter.new(issue_human_resource_items).to_s
       end
     end
+
     def issue_asset_resource_item_names
-      cached_items = instance_variable_get("@issue_asset_resource_items")
+      cached_items = instance_variable_get("@issue_asset_resource_cached_items")
       if !cached_items.nil?
-        IssueResourceItemsPresenter.new(cached_items).to_s
-        #instance_variable_set("@issue_asset_resource_items", nil)
+        names = IssueResourceItemsPresenter.new(cached_items).to_s
+        instance_variable_set("@issue_asset_resource_cached_items", nil)
+        names
       else
         IssueResourceItemsPresenter.new(issue_asset_resource_items).to_s
       end

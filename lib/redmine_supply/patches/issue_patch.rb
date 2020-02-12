@@ -22,10 +22,11 @@ module RedmineSupply
       end
 
       def issue_supply_item_names
-        cached_items = instance_variable_get("@issue_supply_items")
+        cached_items = instance_variable_get("@issue_supply_cached_items")
         if !cached_items.nil?
-          IssueSupplyItemsPresenter.new(cached_items).to_s
-          #instance_variable_set("@issue_supply_items", nil)
+          names = IssueSupplyItemsPresenter.new(cached_items).to_s
+          instance_variable_set("@issue_supply_cached_items", nil)
+          names
         else
           IssueSupplyItemsPresenter.new(issue_supply_items).to_s
         end
@@ -73,7 +74,7 @@ module RedmineSupply
                                     order(:issue_id).
                                     order("#{SupplyItem.table_name}.name ASC").to_a
             issues.each do |issue|
-              issue.instance_variable_set "@issue_supply_items",
+              issue.instance_variable_set "@issue_supply_cached_items",
                                           _issue_supply_items.select {|s| s.issue_id == issue.id}.
                                           map{|isi|
                                             IssueSupplyItem.new(
@@ -108,7 +109,7 @@ module RedmineSupply
                                             where(resource_items: {type: "Human"}).
                                             where(:issue_id => issue_ids).to_a
             issues.each do |issue|
-              issue.instance_variable_set "@issue_human_resource_items",
+              issue.instance_variable_set "@issue_human_resource_cached_items",
                                           _issue_human_resource_items.select {|h| h.issue_id == issue.id}.
                                           map{|iri|
                                               IssueResourceItem.new(
@@ -132,17 +133,17 @@ module RedmineSupply
                                             where(resource_items: {type: "Asset"}).
                                             where(:issue_id => issue_ids).to_a
             issues.each do |issue|
-              issue.instance_variable_set "@issue_asset_resource_items",
+              issue.instance_variable_set "@issue_asset_resource_cached_items",
                                           _issue_asset_resource_items.select {|a| a.issue_id == issue.id}.
                                           map{|iri|
                                             IssueResourceItem.new(
                                               issue: issue,
                                               resource_item: Asset.new(
-                                                id: iri.resource_item.id,
-                                                category_id: iri.resource_item.category_id,
-                                                name: iri.resource_item.name,
-                                                project: issue.project
-                                              )
+                                                                id: iri.resource_item.id,
+                                                                category_id: iri.resource_item.category_id,
+                                                                name: iri.resource_item.name,
+                                                                project: issue.project
+                                                              )
                                             )
                                           }.compact
             end
