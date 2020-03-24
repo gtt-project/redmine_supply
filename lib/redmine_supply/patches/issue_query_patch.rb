@@ -29,18 +29,7 @@ module RedmineSupply
 
       def issues(options={})
         options[:include] = add_supply_items(options[:include] || [])
-        issues = super(options)
-        # Preload issue supply/resource items
-        if has_column?(:issue_supply_item_names)
-          Issue.load_issue_supply_items(issues)
-        end
-        if has_column?(:issue_human_resource_item_names)
-          Issue.load_issue_human_resource_items(issues)
-        end
-        if has_column?(:issue_asset_resource_item_names)
-          Issue.load_issue_asset_resource_items(issues)
-        end
-        issues
+        super(options)
       end
 
       def issue_ids(options={})

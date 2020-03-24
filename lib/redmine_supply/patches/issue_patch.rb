@@ -4,7 +4,7 @@ module RedmineSupply
       def self.apply
         unless Issue < self
           Issue.prepend self
-          Issue.extend ClassMethods
+
           Issue.class_eval do
 
             has_many :issue_supply_items, dependent: :destroy
@@ -57,38 +57,6 @@ module RedmineSupply
       end
       private :delete_supply_item_journals
 
-      module ClassMethods
-        # Preloads issue supply items for a collection of issues
-        def load_issue_supply_items(issues, user=User.current)
-          if issues.any?
-            issue_ids = issues.map(&:id)
-            _issue_supply_items = IssueSupplyItem.where(:issue_id => issue_ids)
-            issues.each do |issue|
-              issue.instance_variable_set "@issue_supply_items", _issue_supply_items.select {|s| s.issue_id == issue.id}
-            end
-          end
-        end
-        # Preloads issue human resource items for a collection of issues
-        def load_issue_human_resource_items(issues, user=User.current)
-          if issues.any?
-            issue_ids = issues.map(&:id)
-            _issue_human_resource_items = IssueResourceItem.where(resource_item_id: ResourceItem.humans.ids).where(:issue_id => issue_ids)
-            issues.each do |issue|
-              issue.instance_variable_set "@issue_human_resource_items", _issue_human_resource_items.select {|h| h.issue_id == issue.id}
-            end
-          end
-        end
-        # Preloads issue asset resource items for a collection of issues
-        def load_issue_asset_resource_items(issues, user=User.current)
-          if issues.any?
-            issue_ids = issues.map(&:id)
-            _issue_asset_resource_items = IssueResourceItem.where(resource_item_id: ResourceItem.assets.ids).where(:issue_id => issue_ids)
-            issues.each do |issue|
-              issue.instance_variable_set "@issue_asset_resource_items", _issue_asset_resource_items.select {|a| a.issue_id == issue.id}
-            end
-          end
-        end
-      end
     end
   end
 end
