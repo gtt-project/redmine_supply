@@ -1,17 +1,11 @@
 module RedmineSupply
   class IssueSupplyItemsPresenter < Presenter
-    def initialize(obj)
-      if obj.instance_of?(Array)
-        @scope = nil
-        @issue_supply_items = obj
-      else
-        @scope = obj.sorted
-        @issue_supply_items = @scope.to_a
-      end
+    def initialize(scope)
+      @scope = scope.sorted
     end
 
     def call
-      @issue_supply_items.map{|isi| issue_supply_item_tag isi}
+      @scope.to_a.map{|isi| issue_supply_item_tag isi}
     end
 
     def to_s
@@ -22,9 +16,7 @@ module RedmineSupply
 
     def issue_supply_item_tag(issue_supply_item)
       item = issue_supply_item.supply_item
-      # TODO: improve prealod cache logic
-      unit_name = @scope.nil? ? item.custom_values.first.value : item.unit_name
-      "#{h item.name} (#{h issue_supply_item.quantity} #{h unit_name})"
+      "#{h item.name} (#{h issue_supply_item.quantity} #{h item.unit_name})"
     end
   end
 end
