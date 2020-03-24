@@ -137,14 +137,9 @@ module RedmineSupply
                                           map{|iri|
                                             IssueResourceItem.new(
                                               issue: issue,
-                                              resource_item: Asset.new(
-                                                id: iri.resource_item.id,
-                                                category_id: iri.resource_item.category_id,
-                                                name: iri.resource_item.name,
-                                                project: issue.project
-                                              )
+                                              resource_item: Asset.new(name: iri.resource_item.name)
                                             )
-                                          }.compact
+                                        }.compact
             end
           end
         end
