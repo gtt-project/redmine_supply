@@ -11,7 +11,7 @@ module RedmineResourceManager
     end
 
     def scope
-      all.sorted.limit Setting.search_results_per_page
+      all.sorted_by_history.limit Setting.search_results_per_page
     end
 
     # size before applying limit

@@ -13,6 +13,9 @@ class ResourceItem < ActiveRecord::Base
   validates :end_date, :date => true
 
   scope :sorted, ->{ order name: :asc}
+  scope :sorted_by_history, ->{
+    left_joins(:issue_resource_items).group(:id).order('COUNT(issue_resource_items.id) DESC')
+  }
   scope :humans, ->{ where type: 'Human' }
   scope :assets, ->{ where type: 'Asset' }
   scope :filter_by_date, ->(date = Date.today){
