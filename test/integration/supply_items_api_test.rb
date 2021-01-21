@@ -75,7 +75,7 @@ class SupplyItemsApiTest < Redmine::ApiTest::Base
         params: {supply_item: {name: 'new name', custom_field_values: {@unit.id => 'm'}}},
         :headers => credentials('jsmith')
     end
-    assert_response :no_content
+    assert_response :success
     assert_equal '', @response.body
     item = SupplyItem.find @item.id
     assert_equal 'new name', item.name
@@ -99,7 +99,7 @@ class SupplyItemsApiTest < Redmine::ApiTest::Base
       delete "/projects/ecookbook/supply_items/#{@item.id}.xml",
         :headers => credentials('jsmith')
     end
-    assert_response :no_content
+    assert_response :success
     assert_equal '', @response.body
     assert_nil SupplyItem.find_by_id(@item.id)
   end
