@@ -17,13 +17,15 @@ module RedmineResourceManager
 
 
     def call
-      if category_id = @params[:category_id].presence
-        @item.category = @project.resource_categories.find category_id
-      end
+      # if category_id = @params[:category_id].presence
+      #   @item.category = @project.resource_categories.find category_id
+      # end
       @item.project = @project
-      @item.name = @params[:name]
-      @item.start_date = @params[:start_date]
-      @item.end_date = @params[:end_date]
+      @item.attributes = @params
+      # @item.name = @params[:name]
+      # @item.start_date = @params[:start_date]
+      # @item.end_date = @params[:end_date]
+      # @item.position = @params[:position]
 
       return Result.new item_saved: @item.save,
                         item: @item

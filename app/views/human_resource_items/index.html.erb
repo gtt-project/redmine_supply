@@ -29,7 +29,10 @@
           <td class="name"><%= link_to i.name, edit_project_human_resource_item_path(@project, i) %></td>
           <td class="date"><%= format_date(i.start_date) %></td>
           <td class="date"><%= format_date(i.end_date) %></td>
-          <td><%= delete_link project_human_resource_item_path(@project, i) %></td>
+          <td class="buttons">
+            <%= reorder_handle(i, url: project_human_resource_item_path(@project, i)) %>
+            <%= delete_link project_human_resource_item_path(@project, i) %>
+          </td>
         </tr>
       <% end %>
     </tbody>
@@ -38,3 +41,6 @@
   <p class="nodata"><%= l :label_no_data %></p>
 <% end %>
 
+<%= javascript_tag do %>
+  $(function() { $("table.resource_items tbody").positionedItems(); });
+<% end %>
