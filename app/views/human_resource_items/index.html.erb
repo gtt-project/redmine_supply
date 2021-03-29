@@ -42,5 +42,12 @@
 <% end %>
 
 <%= javascript_tag do %>
-  $(function() { $("table.resource_items tbody").positionedItems(); });
+  $(function() {
+    $("table.resource_items tbody").positionedItems({
+      scroll: false,
+      sort: function (event, ui) {
+        ui.helper.css({'top': ui.position.top + $(window).scrollTop() + 'px'});
+      },
+    });
+  });
 <% end %>
