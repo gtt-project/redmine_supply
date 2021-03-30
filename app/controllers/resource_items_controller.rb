@@ -8,7 +8,7 @@ class ResourceItemsController < ApplicationController
   def index
     @resource_items = resource_class.where(project_id: @project.id)
       .includes(:category).references(:category)
-      .order("#{ResourceCategory.table_name}.name ASC, #{ResourceItem.table_name}.name ASC")
+      .sorted
   end
 
   def edit
@@ -44,9 +44,20 @@ class ResourceItemsController < ApplicationController
       resource_item_params, item: @resource_item, project: @project
     )
     if r.item_saved?
-      redirect_to_index
+      respond_to do |format|
+        format.html {
+          flash[:notice] = l(:notice_successful_update)
+          redirect_to_index
+        }
+        format.js { head 200 }
+      end
     else
-      render 'edit'
+      respond_to do |format|
+        format.html {
+          render 'edit'
+        }
+        format.js { head 422 }
+      end
     end
   end
 
@@ -78,7 +89,7 @@ class ResourceItemsController < ApplicationController
 
   def resource_item_params
     if parameters = params[:human] || params[:asset]
-      parameters.permit :name, :category_id, :start_date, :end_date
+      parameters.permit :name, :category_id, :start_date, :end_date, :position
     end
   end
 

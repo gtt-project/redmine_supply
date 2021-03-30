@@ -12,7 +12,8 @@ class ResourceItem < ActiveRecord::Base
   validates :start_date, :date => true
   validates :end_date, :date => true
 
-  scope :sorted, ->{ order name: :asc}
+  acts_as_positioned :scope => [:project_id, :type]
+  scope :sorted, ->{ order :position }
   scope :humans, ->{ where type: 'Human' }
   scope :assets, ->{ where type: 'Asset' }
   scope :filter_by_date, ->(date = Date.today){
