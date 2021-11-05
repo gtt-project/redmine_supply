@@ -6,11 +6,12 @@ Rails.configuration.to_prepare do
 end
 
 Redmine::Plugin.register :redmine_supply do
-  name 'Redmine Supply and Resources Plugin'
+  name 'Redmine Admissions Plugin'
   author 'Jens Krämer, Georepublic'
-  author_url 'https://hub.georepublic.net/gtt/redmine_supply'
+  author_url 'https://github.com/georepublic'
+  url 'https://github.com/gtt-project/redmine_supply'
   description 'Adds configurable supply and resource items to issues'
-  version '2.0.0'
+  version '2.1.0'
 
   requires_redmine version_or_higher: '3.4.0'
 
