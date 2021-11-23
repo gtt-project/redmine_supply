@@ -5,13 +5,13 @@ ja:
         resource_category:
           attributes:
             base:
-              select_category_usage: このカテゴリーを何に利用するか選択してください。
+              select_category_usage: このカテゴリを何に利用するか選択してください。
             for_assets:
-              in_use: このカテゴリーは現在、資産に利用されているので選択が必要です。
+              in_use: このカテゴリは現在、資産に利用されているので選択が必要です。
             for_humans:
-              in_use: このカテゴリーは現在、人員に利用されているので選択が必要です。
+              in_use: このカテゴリは現在、人員に利用されているので選択が必要です。
 
-  field_resource_category: カテゴリー
+  field_resource_category: カテゴリ
   field_supply_item_description: 説明
   field_supply_item_unit: 単位
   field_supply_item_stock: 在庫数
@@ -65,3 +65,8 @@ ja:
   label_resource_item_end_date: 終了日
   field_resource_item_start_date: 開始日
   field_resource_item_end_date: 終了日
+  project_module_supply: 資材・リソース
+  permission_manage_supply_items: 資材の項目を管理
+  permission_view_supply_items: 資材の項目を閲覧
+  permission_view_issue_supply_items: チケットの資材項目を閲覧
+  permission_manage_issue_supply_items: チケットの資材項目を管理
