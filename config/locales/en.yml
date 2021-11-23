@@ -65,3 +65,8 @@ en:
   label_resource_item_end_date: End date
   field_resource_item_start_date: Start date
   field_resource_item_end_date: End date
+  project_module_supply: Supply and Resource
+  permission_manage_supply_items: Manage supply items
+  permission_view_supply_items: View supply items
+  permission_view_issue_supply_items: View issue supply items
+  permission_manage_issue_supply_items: Manage issue supply items
