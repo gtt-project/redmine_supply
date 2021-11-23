@@ -6,7 +6,7 @@ Rails.configuration.to_prepare do
 end
 
 Redmine::Plugin.register :redmine_supply do
-  name 'Redmine Admissions Plugin'
+  name 'Redmine Supply Plugin'
   author 'Jens Krämer, Georepublic'
   author_url 'https://github.com/georepublic'
   url 'https://github.com/gtt-project/redmine_supply'
