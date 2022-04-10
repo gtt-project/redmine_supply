@@ -16,14 +16,14 @@ class SupplyItemsApiTest < Redmine::ApiTest::Base
   test "GET /supply_items.xml should return items" do
     get '/projects/ecookbook/supply_items.xml', :headers => credentials('jsmith')
     assert_response :success
-    assert_equal 'application/xml', @response.content_type
+    assert_equal 'application/xml', @response.media_type
     assert_select 'supply_items[type=array] supply_item id', text: @item.id.to_s
   end
 
   test "GET /supply_items/:id.xml should return the item" do
     get "/projects/ecookbook/supply_items/#{@item.id}.xml", :headers => credentials('jsmith')
     assert_response :success
-    assert_equal 'application/xml', @response.content_type
+    assert_equal 'application/xml', @response.media_type
     assert_select 'supply_item id', :text => @item.id.to_s
     assert_select 'supply_item name', :text => @item.name.to_s
   end
@@ -34,7 +34,7 @@ class SupplyItemsApiTest < Redmine::ApiTest::Base
 
     get "/projects/ecookbook/supply_items/#{@item.id}.xml", :headers => credentials('jsmith')
     assert_response :success
-    assert_equal 'application/xml', @response.content_type
+    assert_equal 'application/xml', @response.media_type
     assert_select 'supply_item id', :text => @item.id.to_s
     assert_select 'supply_item name', :text => @item.name.to_s
   end
@@ -46,7 +46,7 @@ class SupplyItemsApiTest < Redmine::ApiTest::Base
         headers: credentials('jsmith')
     end
     assert_response :created
-    assert_equal 'application/xml', @response.content_type
+    assert_equal 'application/xml', @response.media_type
 
     item = SupplyItem.order(:created_at).last
     assert_equal @project, item.project
@@ -63,7 +63,7 @@ class SupplyItemsApiTest < Redmine::ApiTest::Base
         :headers => credentials('jsmith')
     end
     assert_response :unprocessable_entity
-    assert_equal 'application/xml', @response.content_type
+    assert_equal 'application/xml', @response.media_type
 
     assert_select 'errors error', :text => "Unit cannot be blank"
   end
@@ -89,7 +89,7 @@ class SupplyItemsApiTest < Redmine::ApiTest::Base
         :headers => credentials('jsmith')
     end
     assert_response :unprocessable_entity
-    assert_equal 'application/xml', @response.content_type
+    assert_equal 'application/xml', @response.media_type
 
     assert_select 'errors error', :text => "Name cannot be blank"
   end
