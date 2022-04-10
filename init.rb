@@ -1,8 +1,13 @@
-require 'redmine'
-
-Rails.configuration.to_prepare do
-  RedmineSupply.setup
-  RedmineResourceManager.setup
+if Rails.version > '6.0' && Rails.autoloaders.zeitwerk_enabled?
+  Rails.application.config.after_initialize do
+    RedmineSupply.setup
+    RedmineResourceManager.setup
+  end
+else
+  Rails.configuration.to_prepare do
+    RedmineSupply.setup
+    RedmineResourceManager.setup
+  end
 end
 
 Redmine::Plugin.register :redmine_supply do

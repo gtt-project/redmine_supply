@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'redmine_supply/hooks'
-require 'redmine_supply/view_hooks'
+require File.expand_path('../redmine_supply/hooks', __FILE__)
+require File.expand_path('../redmine_supply/view_hooks', __FILE__)
 
 module RedmineSupply
   def self.setup
