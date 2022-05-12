@@ -18,7 +18,7 @@ Redmine::Plugin.register :redmine_supply do
   description 'Adds configurable supply and resource items to issues'
   version '3.0.0'
 
-  requires_redmine version_or_higher: '4.0.0'
+  requires_redmine version_or_higher: '4.2.0'
 
   settings default: {
     "unit_cf" => "Unit"

@@ -4,7 +4,7 @@ This Redmine plugin enables supply management for issues.
 
 ## Requirements
 
- - Redmine >= 4.0.0
+ - Redmine >= 4.2.0
 
 ## Installation
 
@@ -39,7 +39,7 @@ The GTT Project appreciates any [contributions](https://github.com/gtt-project/.
 
 ## Version History
 
-- 3.0.0 Support Redmine 5.0 and drop Redmine <= 3.4 support
+- 3.0.0 Support Redmine 5.0 and drop Redmine <= 4.1 support
 - 2.1.0 Publish on GitHub
 
 See [all releases](https://github.com/gtt-project/redmine_supply/releases) with release notes.
