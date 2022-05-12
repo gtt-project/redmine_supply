@@ -16,9 +16,9 @@ Redmine::Plugin.register :redmine_supply do
   author_url 'https://github.com/georepublic'
   url 'https://github.com/gtt-project/redmine_supply'
   description 'Adds configurable supply and resource items to issues'
-  version '2.1.0'
+  version '3.0.0'
 
-  requires_redmine version_or_higher: '3.4.0'
+  requires_redmine version_or_higher: '4.0.0'
 
   settings default: {
     "unit_cf" => "Unit"
