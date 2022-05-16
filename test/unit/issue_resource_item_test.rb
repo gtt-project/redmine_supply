@@ -50,7 +50,7 @@ class IssueResourceItemTest < ActiveSupport::TestCase
     i.reload
     assert i.resource_items.one?
 
-    i.update_attributes issue_resource_items_attributes: [
+    i.update issue_resource_items_attributes: [
       { id: i.issue_resource_items.first.id, _destroy: '1'}
     ]
 
