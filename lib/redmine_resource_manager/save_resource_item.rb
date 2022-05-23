@@ -3,8 +3,8 @@ module RedmineResourceManager
 
     Result = ImmutableStruct.new :item_saved?, :item
 
-    def self.call(*_)
-      new(*_).call
+    def self.call(*args, **kwargs)
+      new(*args, **kwargs).call
     end
 
     def initialize(params, resource_class: nil,
