@@ -26,7 +26,7 @@ class SupplyItemTest < ActiveSupport::TestCase
   end
 
   test 'should require project' do
-    r = RedmineSupply::SaveSupplyItem.({name: 'test'})
+    r = RedmineSupply::SaveSupplyItem.({name: 'test'}, user: User.current)
     refute r.supply_item_saved?
     assert r.supply_item.errors[:project]
   end
