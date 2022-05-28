@@ -1,8 +1,8 @@
 module RedmineSupply
   class RecordIssueSupplyItemChange
 
-    def self.call(*_)
-      new(*_).call
+    def self.call(*args, **kwargs)
+      new(*args, **kwargs).call
     end
 
     # change is the numerical change of supply item quantity, i.e. if 5kg of
