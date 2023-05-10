@@ -8,6 +8,9 @@ module SupplyItemsHelper
 
   def issue_supply_item_form_tag(issue_supply_item, label: false, deletable: false)
     supply_item = issue_supply_item.supply_item
+    if supply_item.nil?
+      return
+    end
     id = dom_id supply_item
     content_tag :p, id: "#{id}_wrap", class: 'issue_supply_item_wrap' do
       tags = [
