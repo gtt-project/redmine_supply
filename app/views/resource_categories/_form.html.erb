@@ -2,7 +2,7 @@
 
 <div class="box tabular">
   <p><%= f.text_field :name, required: true, size: 25 %></p>
-  <p><%= f.check_box :for_assets %></p>
-  <p><%= f.check_box :for_humans %></p>
+  <p><%= f.check_box :for_assets, { :label => l(:label_resource_category_for_assets) } %></p>
+  <p><%= f.check_box :for_humans, { :label => l(:label_resource_category_for_humans) } %></p>
 </div>
 
