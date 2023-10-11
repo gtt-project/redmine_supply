@@ -65,7 +65,8 @@ ja:
   label_resource_item_end_date: 終了日
   field_resource_item_start_date: 開始日
   field_resource_item_end_date: 終了日
-  project_module_supply: 資材・リソース
+  project_module_supply: 資材
+  project_module_resource: リソース
   permission_manage_supply_items: 資材の項目を管理
   permission_view_supply_items: 資材の項目を閲覧
   permission_view_issue_supply_items: チケットの資材項目を閲覧

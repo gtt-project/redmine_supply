@@ -19,7 +19,7 @@ class IssueResourceItemTest < ActiveSupport::TestCase
     Role.anonymous.add_permission! :manage_issue_resources
 
     @project = Project.find 'ecookbook'
-    @project.enabled_modules.create! name: 'supply'
+    @project.enabled_modules.create! name: 'resource'
 
     @cat = ResourceCategory.generate! project: @project, name: 'Car'
     @item = Asset.create! project: @project, category: @cat, name: 'RCM 429'
