@@ -76,6 +76,9 @@ module RedmineSupply
               issue.instance_variable_set "@issue_supply_items",
                                           _issue_supply_items.select {|s| s.issue_id == issue.id}.
                                           map{|isi|
+                                            if isi.supply_item.nil?
+                                              next
+                                            end
                                             IssueSupplyItem.new(
                                               id: isi.id,
                                               issue: issue,
