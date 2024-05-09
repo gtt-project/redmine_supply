@@ -22,6 +22,9 @@ module RedmineSupply
 
     def issue_supply_item_tag(issue_supply_item)
       item = issue_supply_item.supply_item
+      if item.nil?
+        return ""
+      end
       "#{h item.name} (#{h issue_supply_item.quantity} #{h item.unit_name})"
     end
   end

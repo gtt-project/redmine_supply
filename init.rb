@@ -40,6 +40,9 @@ Redmine::Plugin.register :redmine_supply do
       supply_items: %i( autocomplete )
     }, require: :member
 
+  end
+
+  project_module :resource do
     permission :manage_resource_categories, {
       resource_categories: %i( new edit update create destroy ),
       projects: %i( manage_resource_categories )
