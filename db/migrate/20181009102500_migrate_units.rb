@@ -1,4 +1,4 @@
-class SupplyItem < ActiveRecord::Base
+class SupplyItem < (defined?(ApplicationRecord) == 'constant' ? ApplicationRecord : ActiveRecord::Base)
 
   class Unit
     def self.all
