@@ -1,4 +1,4 @@
-class SupplyItemJournal < ActiveRecord::Base
+class SupplyItemJournal < (defined?(ApplicationRecord) == 'constant' ? ApplicationRecord : ActiveRecord::Base)
 
   belongs_to :supply_item
   belongs_to :user
