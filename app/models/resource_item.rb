@@ -1,4 +1,4 @@
-class ResourceItem < ActiveRecord::Base
+class ResourceItem < (defined?(ApplicationRecord) == 'constant' ? ApplicationRecord : ActiveRecord::Base)
   belongs_to :project
   belongs_to :category, class_name: 'ResourceCategory'
 

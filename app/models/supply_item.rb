@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SupplyItem < ActiveRecord::Base
+class SupplyItem < (defined?(ApplicationRecord) == 'constant' ? ApplicationRecord : ActiveRecord::Base)
   belongs_to :project
   has_many :issue_supply_items
   has_many :issues, through: :issue_supply_items
