@@ -104,10 +104,21 @@ class SupplyItemsController < ApplicationController
   end
 
   def destroy
-    find_supply_item.destroy
-    respond_to do |format|
-      format.html { redirect_to project_supply_items_path(@project) }
-      format.api { render_api_ok }
+    @supply_item = find_supply_item
+    if @supply_item.issues.empty?
+      @supply_item.destroy
+      respond_to do |format|
+        format.html { redirect_to project_supply_items_path(@project) }
+        format.api { render_api_ok }
+      end
+    else
+      respond_to do |format|
+        format.html do
+          flash[:error] = l(:error_can_not_delete_supply_item)
+          redirect_to project_supply_items_path(@project)
+        end
+        format.api  {head :unprocessable_entity}
+      end
     end
   end
 
