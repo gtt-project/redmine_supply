@@ -111,6 +111,52 @@ class IssueSupplyItemsTest < Redmine::IntegrationTest
     assert_select 'div.value', text: /Sand/, count: 0
 
   end
+
+  def test_used_supply_item_cannot_be_deleted
+    Role.find(1).add_permission! :manage_issue_supply_items, :manage_supply_items
+    log_user 'jsmith', 'jsmith'
+
+    sand = SupplyItem.generate! name: 'Sand', project: @project, unit: 'kg'
+
+    get '/projects/ecookbook/issues/new'
+    assert_response :success
+    assert_select 'label', text: 'Supply items'
+    assert_select '.add_supply_items a', text: 'Add'
+
+    post '/projects/ecookbook/issues', params: {
+      issue: {
+        subject: 'test',
+        issue_supply_items_attributes: [
+          {"quantity"=>"10.5", "supply_item_id"=>sand.id.to_s}
+        ]
+      }
+    }
+
+    sand.reload
+    assert_equal 1, sand.issue_supply_items.count
+    assert issue_supply_item = sand.issue_supply_items.first
+    assert_equal 10.5, issue_supply_item.quantity
+    assert issue = issue_supply_item.issue
+    assert_equal 'test', issue.subject
+
+    follow_redirect!
+    assert_response :success
+    assert_select 'label', text: 'Supply items'
+    assert_select 'div.value', text: 'Sand (10.5 kg)'
+
+    assert_no_difference 'SupplyItem.count' do
+      delete "/projects/ecookbook/supply_items/#{sand.id}"
+    end
+    assert_redirected_to '/projects/ecookbook/supply_items'
+    assert_not_nil flash[:error]
+
+    assert_difference 'Issue.count', -1 do
+      delete "/issues/#{issue.id}"
+    end
+    assert_difference 'SupplyItem.count', -1 do
+      delete "/projects/ecookbook/supply_items/#{sand.id}"
+    end
+    assert_redirected_to '/projects/ecookbook/supply_items'
+    assert_nil flash[:error]
+  end
 end
-
-
