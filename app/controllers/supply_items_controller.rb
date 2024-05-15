@@ -117,7 +117,7 @@ class SupplyItemsController < ApplicationController
           flash[:error] = l(:error_can_not_delete_supply_item)
           redirect_to project_supply_items_path(@project)
         end
-        format.api  {head :unprocessable_entity}
+        format.api  { head :unprocessable_entity }
       end
     end
   end

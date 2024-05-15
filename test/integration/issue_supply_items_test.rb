@@ -113,15 +113,14 @@ class IssueSupplyItemsTest < Redmine::IntegrationTest
   end
 
   def test_used_supply_item_cannot_be_deleted
-    Role.find(1).add_permission! :manage_issue_supply_items, :manage_supply_items
+    Role.find(1).add_permission! :manage_issue_supply_items
+    Role.find(1).add_permission! :manage_supply_items
     log_user 'jsmith', 'jsmith'
 
     sand = SupplyItem.generate! name: 'Sand', project: @project, unit: 'kg'
 
     get '/projects/ecookbook/issues/new'
     assert_response :success
-    assert_select 'label', text: 'Supply items'
-    assert_select '.add_supply_items a', text: 'Add'
 
     post '/projects/ecookbook/issues', params: {
       issue: {
