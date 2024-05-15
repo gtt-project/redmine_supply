@@ -168,6 +168,51 @@ class IssueResourceItemsTest < Redmine::IntegrationTest
     assert_select 'div.issue_resource_item_wrap', text: /ASL-JJ 262/, count: 0
 
   end
+
+  def test_used_resource_items_cannot_be_deleted
+    Role.find(1).add_permission! :manage_issue_resources
+    Role.find(1).add_permission! :view_issue_resources
+    Role.find(1).add_permission! :manage_resource_items
+    log_user 'jsmith', 'jsmith'
+
+    get '/projects/ecookbook/issues/new'
+    assert_response :success
+
+    post '/projects/ecookbook/issues', params: {
+      issue: {
+        subject: 'test',
+        issue_resource_items_attributes: [
+          {"resource_item_id" => @item.id.to_s}
+        ]
+      }
+    }
+
+    @item.reload
+    assert_equal 1, @item.issue_resource_items.count
+    assert issue_resource_item = @item.issue_resource_items.first
+    assert issue = issue_resource_item.issue
+    assert_equal 'test', issue.subject
+
+    follow_redirect!
+    assert_response :success
+    assert_select 'div.label', text: 'Assets:'
+    assert_select 'div.value', text: /RCM 429/
+
+    assert_no_difference 'ResourceItem.assets.count' do
+      delete "/projects/ecookbook/asset_resource_items/#{@item.id}"
+    end
+    assert_redirected_to '/projects/ecookbook/asset_resource_items'
+    assert_not_nil flash[:error]
+
+    assert_difference 'Issue.count', -1 do
+      delete "/issues/#{issue.id}"
+    end
+    assert_difference 'ResourceItem.assets.count', -1 do
+      delete "/projects/ecookbook/asset_resource_items/#{@item.id}"
+    end
+    assert_redirected_to '/projects/ecookbook/asset_resource_items'
+    assert_nil flash[:error]
+  end
 end
 
 
