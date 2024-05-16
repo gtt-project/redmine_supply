@@ -22,7 +22,7 @@
     </thead>
     <tbody>
       <% for i in @resource_items %>
-        <tr>
+        <tr class="<%= i.css_classes %>">
           <% if categories_present %>
           <td class="category"><%= i.category&.name %>
           <% end %>

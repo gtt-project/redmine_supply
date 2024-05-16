@@ -11,6 +11,7 @@
     <p><%= custom_field_tag_with_label :supply_item, value %></p>
   <% end %>
   <p><%= f.text_area :description, label: l(:field_supply_item_description), rows: 10 %></p>
+  <p><%= f.check_box :active %></p>
 </div>
 
 <%= wikitoolbar_for 'supply_item_description' %>
