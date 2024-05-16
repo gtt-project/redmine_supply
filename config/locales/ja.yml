@@ -71,3 +71,6 @@ ja:
   permission_view_supply_items: 資材の項目を閲覧
   permission_view_issue_supply_items: チケットの資材項目を閲覧
   permission_manage_issue_supply_items: チケットの資材項目を管理
+  error_can_not_delete_supply_item: 'この資材は使用中です。削除できません。'
+  error_can_not_delete_asset_resource_item: "この資産は使用中です。削除できません。"
+  error_can_not_delete_human_resource_item: "この人員は使用中です。削除できません。"

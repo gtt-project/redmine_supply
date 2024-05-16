@@ -3,6 +3,7 @@ class ResourceItem < (defined?(ApplicationRecord) == 'constant' ? ApplicationRec
   belongs_to :category, class_name: 'ResourceCategory'
 
   has_many :issue_resource_items
+  has_many :issues, through: :issue_resource_items
 
   validates :project_id, presence: true
   #validates :category_id, presence: true

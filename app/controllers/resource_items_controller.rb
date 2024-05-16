@@ -62,8 +62,22 @@ class ResourceItemsController < ApplicationController
   end
 
   def destroy
-    find_resource_item.destroy
-    redirect_to_index
+    @resource_item = find_resource_item
+    if @resource_item.issues.empty?
+      @resource_item.destroy
+      respond_to do |format|
+        format.html { redirect_to_index }
+        format.api { render_api_ok }
+      end
+    else
+      respond_to do |format|
+        format.html do
+          flash[:error] = error_can_not_delete_resource_item
+          redirect_to_index
+        end
+        format.api { head :unprocessable_entity }
+      end
+    end
   end
 
   def autocomplete

@@ -71,3 +71,6 @@ en:
   permission_view_supply_items: View supply items
   permission_view_issue_supply_items: View issue supply items
   permission_manage_issue_supply_items: Manage issue supply items
+  error_can_not_delete_supply_item: "This supply item contains issues and cannot be deleted."
+  error_can_not_delete_asset_resource_item: "This asset resource item contains issues and cannot be deleted."
+  error_can_not_delete_human_resource_item: "This human resource item contains issues and cannot be deleted."
