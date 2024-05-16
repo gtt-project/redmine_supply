@@ -155,7 +155,7 @@ class SupplyItemsController < ApplicationController
 
   def permitted_supply_item_parameters
     cf_ids = [RedmineSupply.unit_cf&.id].compact.map(&:to_s)
-    [:name, :description, custom_field_values: cf_ids]
+    [:name, :description, :active, custom_field_values: cf_ids]
   end
 
 end

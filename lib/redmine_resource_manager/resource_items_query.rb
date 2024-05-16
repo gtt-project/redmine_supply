@@ -22,7 +22,7 @@ module RedmineResourceManager
     private
 
     def all
-      all = @resource_class.where(project_id: @project.id)
+      all = @resource_class.where(project_id: @project.id).where(active: true)
       all = all.where(category_id: @category_id) if @category_id
       all = all.filter_by_date if @filter_by_date
       all = all.like @query if @query
