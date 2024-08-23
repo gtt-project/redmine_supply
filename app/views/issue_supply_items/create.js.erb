@@ -1,6 +1,6 @@
 <% @issue_supply_items.each do |i| %>
   var wrap = $("#issue-form #<%= dom_id i.supply_item %>_wrap");
-  if (wrap.size() > 0) {
+  if (wrap.length > 0) {
     var quantity = wrap.find('input').val();
     if (quantity) {
       quantity = parseFloat(quantity);
