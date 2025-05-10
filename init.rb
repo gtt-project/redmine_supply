@@ -1,13 +1,6 @@
-if Rails.version > '6.0' && Rails.autoloaders.zeitwerk_enabled?
-  Rails.application.config.after_initialize do
-    RedmineSupply.setup
-    RedmineResourceManager.setup
-  end
-else
-  Rails.configuration.to_prepare do
-    RedmineSupply.setup
-    RedmineResourceManager.setup
-  end
+Rails.application.config.after_initialize do
+  RedmineSupply.setup
+  RedmineResourceManager.setup
 end
 
 Redmine::Plugin.register :redmine_supply do
@@ -16,9 +9,9 @@ Redmine::Plugin.register :redmine_supply do
   author_url 'https://github.com/georepublic'
   url 'https://github.com/gtt-project/redmine_supply'
   description 'Adds configurable supply and resource items to issues'
-  version '3.0.0'
+  version '4.0.0'
 
-  requires_redmine version_or_higher: '4.2.0'
+  requires_redmine version_or_higher: '5.1.0'
 
   settings default: {
     "unit_cf" => "Unit"
