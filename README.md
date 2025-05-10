@@ -1,5 +1,7 @@
 # Redmine Supply plugin
 
+[![CI](https://github.com/gtt-project/redmine_supply/actions/workflows/test.yml/badge.svg)](https://github.com/gtt-project/redmine_supply/actions?query=workflow%3ATest+branch%3Amain)
+
 This Redmine plugin enables supply management for issues.
 
 ## Requirements
