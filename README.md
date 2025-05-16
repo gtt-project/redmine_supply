@@ -1,10 +1,12 @@
 # Redmine Supply plugin
 
+[![CI](https://github.com/gtt-project/redmine_supply/actions/workflows/test.yml/badge.svg)](https://github.com/gtt-project/redmine_supply/actions?query=workflow%3ATest+branch%3Amain)
+
 This Redmine plugin enables supply management for issues.
 
 ## Requirements
 
- - Redmine >= 4.2.0
+ - Redmine >= 5.1.0
 
 ## Installation
 
@@ -39,6 +41,7 @@ The GTT Project appreciates any [contributions](https://github.com/gtt-project/.
 
 ## Version History
 
+- 4.0.0 Supporting Redmine 6.0 (without SVG icon) and drop Redmine <= 5.0 support
 - 3.0.0 Support Redmine 5.0 and drop Redmine <= 4.1 support
 - 2.1.0 Publish on GitHub
 
