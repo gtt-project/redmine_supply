@@ -23,7 +23,7 @@ module RedmineSupply
     private
 
     def all
-      all = @project.supply_items
+      all = @project.supply_items.active
       all = all.like @query if @query
       all
     end

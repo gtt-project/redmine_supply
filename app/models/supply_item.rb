@@ -13,7 +13,8 @@ class SupplyItem < (defined?(ApplicationRecord) == 'constant' ? ApplicationRecor
                                  scope: :project_id }
   validates :stock, presence: true, numericality: true
 
-  scope :sorted, ->{ order name: :asc}
+  scope :sorted, ->{ order name: :asc }
+  scope :active, ->{ where(:active => true) }
 
   acts_as_customizable
 
@@ -55,4 +56,7 @@ class SupplyItem < (defined?(ApplicationRecord) == 'constant' ? ApplicationRecor
     end
   end
 
+  def css_classes
+    "supply_item " + (active ? "active" : "inactive")
+  end
 end

@@ -103,7 +103,7 @@ class ResourceItemsController < ApplicationController
 
   def resource_item_params
     if parameters = params[:human] || params[:asset]
-      parameters.permit :name, :category_id, :start_date, :end_date, :position
+      parameters.permit :name, :category_id, :start_date, :end_date, :position, :active
     end
   end
 

@@ -15,6 +15,7 @@ class ResourceItem < (defined?(ApplicationRecord) == 'constant' ? ApplicationRec
 
   acts_as_positioned :scope => [:project_id, :type]
   scope :sorted, ->{ order :position }
+  scope :active, ->{ where(:active => true) }
   scope :humans, ->{ where type: 'Human' }
   scope :assets, ->{ where type: 'Asset' }
   scope :filter_by_date, ->(date = Date.today){
@@ -28,5 +29,8 @@ class ResourceItem < (defined?(ApplicationRecord) == 'constant' ? ApplicationRec
       all
     end
   }
-end
 
+  def css_classes
+    "resource_item " + (active ? "active" : "inactive")
+  end
+end

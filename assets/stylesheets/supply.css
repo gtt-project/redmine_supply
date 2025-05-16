@@ -7,12 +7,18 @@ table.list.issues td.issue_asset_resource_item_names {
   white-space: normal;
 }
 
+tr.resource_item.inactive { color: #aaa; }
+tr.resource_item.inactive a { color: #aaa; }
+
 table.list.supply_items tbody td.name,
 table.list.supply_items tbody td.description,
 table.list.supply_item_journals tbody td.name,
 table.list.resource_items tbody td.name {
   text-align: left;
 }
+
+tr.supply_item.inactive { color: #aaa; }
+tr.supply_item.inactive a { color: #aaa; }
 
 /* Supply item history */
 
