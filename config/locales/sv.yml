@@ -1,0 +1,78 @@
+label_resource_item_search: Sök
+activerecord:
+  errors:
+    models:
+      resource_category:
+        attributes:
+          base:
+            select_category_usage: Vänligen välj vad denna kategori ska användas till.
+          for_assets:
+            in_use: måste väljas eftersom denna kategori för närvarande används för
+              tillgångar.
+          for_humans:
+            in_use: måste väljas eftersom denna kategori för närvarande används för
+              personer.
+field_resource_category: Kategori
+field_supply_item_description: Beskrivning
+field_supply_item_unit: Enhet
+field_supply_item_stock: Lager
+field_supply_item_stock_change: Förändring i lager
+field_supply_item_stock_change_comment: Kommentar
+field_issue_asset_resource_item_names: Tillgångar
+field_issue_human_resource_item_names: Personer
+field_issue_supply_item_names: Förrådsartiklar
+label_add_issue_resource_items: Lägg till
+label_resource_category_for_assets: För tillgångar
+label_resource_category_for_humans: För människor
+label_resource_category_name: Namn
+label_resource_category_new: Ny resurskategori
+label_resource_category_plural: Resurskategorier
+label_resource_item_category: Kategori
+label_resource_item_name: Namn
+label_asset_resource_item_new: Ny tillgång
+label_human_resource_item_new: Ny person
+label_asset_resource_item_plural: Tillgångar
+label_human_resource_item_plural: Personer
+label_resource_item_more_items: Visar %{shown} av %{total} resultat.
+label_add_issue_supply_items: Lägg till förrådsartiklar
+label_add_supply_items: Lägg till
+label_supply_item_description: Beskrivning
+label_supply_item_history: Historik
+label_supply_item_journal_change: Förändring i lager
+label_supply_item_journal_new_stock: Nytt lager
+label_supply_item_journal_plural: Förrådsartiklar
+label_supply_item_name: Namn
+label_supply_item_new: Ny leveransartikel
+label_supply_item_plural: Förrådsartiklar
+label_supply_item_search: 'Sök efter förrådsartiklar:'
+label_supply_item_stock: Lager
+label_supply_item_unit_piece: stk
+label_supply_item_unit_kg: kg
+label_supply_item_update_stock: Uppdatera lager
+label_supply_item_more_items: Visar %{shown} av %{total} resultat.
+permission_manage_issue_resources: Hantera problemresurser
+permission_manage_resource_categories: Hantera resurskategorier
+permission_manage_resource_items: Hantera resursobjekt
+permission_view_resource_items: Visa resursobjekt
+permission_view_issue_resources: Se resurser för utgivningen
+text_supply_item_journal_created: Förrådsartikeln har skapats.
+text_supply_item_created: Förrådsartikel %{name} skapades (%{stock})
+text_supply_item_updated: Leveransobjekt %{name} ändrades (%{change})
+text_supply_item_nochange: ingen förändring
+text_issue_supply_item_changed: 'Utgåva #%{id}: %{name} ändrades (%{change})'
+label_resource_item_start_date: Startdatum
+label_resource_item_end_date: Slutdatum
+field_resource_item_start_date: Startdatum
+field_resource_item_end_date: Slutdatum
+project_module_supply: Utbud
+project_module_resource: Resurs
+permission_manage_supply_items: Hantera förrådsartiklar
+permission_view_supply_items: Visa förrådsartiklar
+permission_view_issue_supply_items: Visa utgivningsmaterial
+permission_manage_issue_supply_items: Hantera utdelningsartiklar
+error_can_not_delete_supply_item: Denna leverans innehåller problem och kan inte tas
+  bort.
+error_can_not_delete_asset_resource_item: Den här tillgångsposten innehåller problem
+  och kan inte tas bort.
+error_can_not_delete_human_resource_item: Detta personalärende innehåller frågor och
+  kan inte raderas.
